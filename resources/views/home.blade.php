@@ -42,7 +42,7 @@
     justify-content: center;
     border-radius: 100px;
     font-size: 18px;
-    margin-left: 5px;
+   
 }
 
 
