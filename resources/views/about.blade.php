@@ -106,7 +106,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <img src="{{ asset('images/restaurant.jpg') }}" class="img-fluid rounded shadow" alt="Restaurant">
+                    <img src="{{ ('images/landscape foodjpg') }}" class="img-fluid rounded shadow" alt="Restaurant">
                 </div>
             </div>
         </div>
