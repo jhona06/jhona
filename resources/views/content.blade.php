@@ -88,11 +88,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
+                    <li class="nav-item">
                             <a class="nav-link" href="home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="content">Menu</a>
+                            <a class="nav-link" href="about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="content">Content</a>
                         </li>
                     </ul>
                 </div>
