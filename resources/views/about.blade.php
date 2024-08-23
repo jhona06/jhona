@@ -17,7 +17,7 @@
             padding-top: 16px;
             padding-bottom: 16px;
             z-index: 9999;
-            background-color: #f8f9fa;
+            background-color: #B4D6CD;
         }
 
         .navbar-brand {
