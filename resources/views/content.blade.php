@@ -35,10 +35,31 @@
         section {
             padding-top: 170px;
             padding-bottom: 60px;
-            margin-top: 100px;
         }
 
-        
+        /* About Section */
+        #about {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+
+        #about h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        #about p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: #555;
+        }
+
+        #about img {
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
         /* Menu (Content Section) */
         #content h2 {
             font-family: 'Playfair Display', serif;
@@ -92,12 +113,33 @@
                         <a class="nav-link" href="about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="content">Content</a>
+                        <a class="nav-link" href="content">Menu</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="display-4 mb-4">About Our Restaurant</h2>
+                    <p class="lead mb-4">
+                        Welcome to Mac and Gab! We are committed to serving delicious, fresh, and healthy food
+                        made from the finest ingredients. Our passion for food is reflected in every dish we create,
+                        ensuring a memorable dining experience for our customers.
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <img src="{{ asset('images/restaurant.jpg') }}" class="img-fluid rounded shadow" alt="Restaurant">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Menu Section (Content Section) -->
     <section id="content" class="py-5">
@@ -146,7 +188,6 @@
                 </div>
             </div>
             <div class="row">
-                <!-- More Menu Items (repeat structure for more dishes) -->
                 <!-- Menu Item 4 -->
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 shadow-sm">
