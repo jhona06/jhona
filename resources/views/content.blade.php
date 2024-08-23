@@ -35,32 +35,10 @@
         section {
             padding-top: 170px;
             padding-bottom: 60px;
-        }
-
-        /* About Section */
-        #about {
-            background-color: #f8f9fa;
-            padding: 60px 0;
             margin-top: 100px;
         }
 
-        #about h2 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
-
-        #about p {
-            font-size: 1.25rem;
-            font-weight: 300;
-            color: #555;
-        }
-
-        #about img {
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
+        
         /* Menu (Content Section) */
         #content h2 {
             font-family: 'Playfair Display', serif;
