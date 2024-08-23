@@ -41,28 +41,32 @@
         
         </style>
     <body>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+             <!-- Navbar Container -->
+    <div class="navbar-container">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
                 <a class="navbar-brand" href="macandgab">Mac and Gab</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <ul class="nav justify-content-end">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="content">Content</a>
-                    </li>
-            
-                </ul>
-            </ul>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="content">Content</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
         </nav>
+    </div>
+
         <section id="hero">
             <div class="container">
                 <div class="row">
