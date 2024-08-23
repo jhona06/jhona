@@ -7,7 +7,7 @@
         <title>Home</title>
 
         <!-- link -->
-        <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+        
         <link rel="stylesheet" href="./assets/css/aos.css">
         <link rel="stylesheet" href="./assets/css/line-awesome.min.css">
         <link rel="stylesheet" href="./assets/css/style.css">
@@ -46,11 +46,7 @@
 }
 
 
-@media (max-width: 992px){
-    .navbar{
-        background-color: var(--dark);
-    }
-}
+
             
         </style>
     <body>
