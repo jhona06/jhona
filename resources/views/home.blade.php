@@ -37,7 +37,7 @@
 
         /* Section Padding */
         .content-container {
-            padding-top: 100px;
+            padding-top: 100px; /* Adjusted padding to account for fixed navbar */
             padding-bottom: 60px;
         }
 
@@ -117,9 +117,7 @@
     </div>
 
     <!-- Home Section -->
-     
     <section id="home" class="py-5 bg-light">
-    <section id="home">
         <div class="container">
             <h1 class="display-3">Welcome to Mac and Gab Restaurant</h1>
             <p class="lead">
