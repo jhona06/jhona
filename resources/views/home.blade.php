@@ -66,6 +66,7 @@
         <section id="hero">
             <div class="container">
                 <div class="row">
+                <img src="C:\Users\Karel\Desktop\Laravel\jhona\public\images\landscape food.jpg" class="img-fluid" alt="Responsive image">
                     <div class="col-lg-6">
                     <img src="landscape food.jpg" class="img-fluid" alt="Responsive image">
                         <h1 class="display-5" data-aos="fade-up">JHONA CESTINA</h1>
