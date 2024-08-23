@@ -10,14 +10,17 @@
     <!-- Custom Styles -->
     <style>
         /* Navbar */
-        .navbar {
+        .navbar-container {
             position: fixed;
             top: 0;
             width: 100%;
+            z-index: 9999;
+        }
+
+        .navbar {
+            background-color: #f8f9fa;
             padding-top: 16px;
             padding-bottom: 16px;
-            z-index: 9999;
-            background-color: #f8f9fa;
         }
 
         .navbar-brand {
@@ -32,10 +35,9 @@
         }
 
         /* Section Padding */
-        section {
-            padding-top: 300px;
+        .content-container {
+            padding-top: 250px; /* Adjusted padding to account for fixed navbar */
             padding-bottom: 60px;
-           
         }
 
         /* Menu (Content Section) */
@@ -75,109 +77,115 @@
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="macandgab">Mac and Gab</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="content">Menu</a>
-                    </li>
-                </ul>
+    <!-- Navbar Container -->
+    <div class="navbar-container">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="macandgab">Mac and Gab</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="content">Menu</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
-    <!-- Menu Section (Content Section) -->
-    <section id="content" class="py-5 bg-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <h2 class="display-4 mb-4">Our Menu</h2>
-                    <p class="lead mb-4">
-                        Explore our wide variety of delicious dishes, made from the freshest ingredients!
-                    </p>
+    <!-- Content Container -->
+    <div class="content-container">
+        <!-- Menu Section (Content Section) -->
+        <section id="content" class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <h2 class="display-4 mb-4">Our Menu</h2>
+                        <p class="lead mb-4">
+                            Explore our wide variety of delicious dishes, made from the freshest ingredients!
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Menu Item 1 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="{{ asset('images/dish1.jpg') }}" class="card-img-top" alt="Dish 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Dish Name 1</h5>
+                                <p class="card-text">A brief description of the dish. Made with the finest ingredients and full of flavor.</p>
+                                <p class="card-text"><strong>$12.99</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Menu Item 2 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="{{ asset('images/dish2.jpg') }}" class="card-img-top" alt="Dish 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Dish Name 2</h5>
+                                <p class="card-text">A brief description of the dish. A perfect blend of taste and tradition.</p>
+                                <p class="card-text"><strong>$14.99</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Menu Item 3 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="{{ asset('images/dish3.jpg') }}" class="card-img-top" alt="Dish 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Dish Name 3</h5>
+                                <p class="card-text">A delicious dish perfect for any occasion, cooked to perfection.</p>
+                                <p class="card-text"><strong>$16.99</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Menu Item 4 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="{{ asset('images/dish4.jpg') }}" class="card-img-top" alt="Dish 4">
+                            <div class="card-body">
+                                <h5 class="card-title">Dish Name 4</h5>
+                                <p class="card-text">A wonderful dish, prepared with love and the finest ingredients.</p>
+                                <p class="card-text"><strong>$10.99</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Menu Item 5 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="{{ asset('images/dish5.jpg') }}" class="card-img-top" alt="Dish 5">
+                            <div class="card-body">
+                                <h5 class="card-title">Dish Name 5</h5>
+                                <p class="card-text">An exquisite dish that captures the essence of our culinary expertise.</p>
+                                <p class="card-text"><strong>$18.99</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Menu Item 6 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="{{ asset('images/dish6.jpg') }}" class="card-img-top" alt="Dish 6">
+                            <div class="card-body">
+                                <h5 class="card-title">Dish Name 6</h5>
+                                <p class="card-text">A dish to satisfy your taste buds, crafted with care and quality.</p>
+                                <p class="card-text"><strong>$15.99</strong></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <!-- Menu Item 1 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('images/dish1.jpg') }}" class="card-img-top" alt="Dish 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Dish Name 1</h5>
-                            <p class="card-text">A brief description of the dish. Made with the finest ingredients and full of flavor.</p>
-                            <p class="card-text"><strong>$12.99</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Menu Item 2 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('images/dish2.jpg') }}" class="card-img-top" alt="Dish 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Dish Name 2</h5>
-                            <p class="card-text">A brief description of the dish. A perfect blend of taste and tradition.</p>
-                            <p class="card-text"><strong>$14.99</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Menu Item 3 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('images/dish3.jpg') }}" class="card-img-top" alt="Dish 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Dish Name 3</h5>
-                            <p class="card-text">A delicious dish perfect for any occasion, cooked to perfection.</p>
-                            <p class="card-text"><strong>$16.99</strong></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Menu Item 4 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('images/dish4.jpg') }}" class="card-img-top" alt="Dish 4">
-                        <div class="card-body">
-                            <h5 class="card-title">Dish Name 4</h5>
-                            <p class="card-text">A wonderful dish, prepared with love and the finest ingredients.</p>
-                            <p class="card-text"><strong>$10.99</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Menu Item 5 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('images/dish5.jpg') }}" class="card-img-top" alt="Dish 5">
-                        <div class="card-body">
-                            <h5 class="card-title">Dish Name 5</h5>
-                            <p class="card-text">An exquisite dish that captures the essence of our culinary expertise.</p>
-                            <p class="card-text"><strong>$18.99</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Menu Item 6 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('images/dish6.jpg') }}" class="card-img-top" alt="Dish 6">
-                        <div class="card-body">
-                            <h5 class="card-title">Dish Name 6</h5>
-                            <p class="card-text">A dish to satisfy your taste buds, crafted with care and quality.</p>
-                            <p class="card-text"><strong>$15.99</strong></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
