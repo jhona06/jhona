@@ -67,7 +67,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                    <img src="landscape food.jpg" alt="Responsive image">
+                    <img src="landscape food.jpg" class="img-fluid" alt="Responsive image">
                         <h1 class="display-5" data-aos="fade-up">JHONA CESTINA</h1>
                         <p data-aos="fade-up" data-aos-delay="300">Join me in exploring our shared  passion for technology as we delve into the depths of the tech world. Get to know more about me and my journey in the ever evolving realm of IT</p>
                         <a href="#aboutme" class="btn btn-outline-light" data-aos="fade-up" data-aos-delay="500"> Know me more</a>
