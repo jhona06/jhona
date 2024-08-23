@@ -63,7 +63,10 @@
             </div>
         </div>
         </nav>
-        <div id="carouselExampleCaptions" class="carousel slide">
+        <section id="hero">
+            <div class="container">
+                <div class="row">
+                <div id="carouselExampleCaptions" class="carousel slide">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -101,6 +104,12 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+                    </div>
+                </div>
+            </div>
+
+      </section>
+
 
         <script src="/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
 </body>
