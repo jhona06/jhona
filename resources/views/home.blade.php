@@ -27,6 +27,7 @@
             font-size: 28px;
             text-transform: uppercase;
             margin-right: 50px;
+            font-family: 'Playfair Display', serif;
         }
 
         .navbar .navbar-nav .nav-link {
@@ -36,7 +37,7 @@
 
         /* Section Padding */
         .content-container {
-            padding-top: 250px; /* Adjusted padding to account for fixed navbar */
+            padding-top: 100px;
             padding-bottom: 60px;
         }
 
@@ -85,24 +86,12 @@
         #contact .form-control {
             border-radius: 5px;
         }
-
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 5px;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>
 
-   <!-- Navbar Container -->
- <div class="navbar-container">
+    <!-- Navbar Container -->
+    <div class="navbar-container">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container">
@@ -112,8 +101,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                            <a class="nav-link" href="home">Home</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about">About</a>
@@ -128,6 +117,8 @@
     </div>
 
     <!-- Home Section -->
+     
+    <section id="home" class="py-5 bg-light">
     <section id="home">
         <div class="container">
             <h1 class="display-3">Welcome to Mac and Gab Restaurant</h1>

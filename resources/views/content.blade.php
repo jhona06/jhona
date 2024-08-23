@@ -27,6 +27,7 @@
             font-size: 28px;
             text-transform: uppercase;
             margin-right: 50px;
+            font-family: 'Playfair Display', serif;
         }
 
         .navbar .navbar-nav .nav-link {
