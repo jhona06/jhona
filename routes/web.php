@@ -14,10 +14,10 @@ Route::get('/content', function () {
 Route::get('/about', function () {
     return view('about');
 });
-Route::get('/', function () {
+Route::get('/welcome1', function () {
     return view('welcome1', ['message' => 'Welcome to the homepage!']);
 })
-Route::redirect('/home', '/');
+Route::redirect('/home', '/welcome1');
 
 Route::get('/contact', function () {
     return view('contact');
@@ -29,6 +29,6 @@ Route::get('/username/{username}', function ($username) {
 Route::get('/username/{username?}', function ($username = 'Guest') {
     return view('username', ['username' => $username]);
 });
-Route::get('/user/{username?}', function ($username = 'Guest') {
-    return view('user', ['username' => $username]);
+Route::get('/username/{username?}', function ($username = 'Guest') {
+    return view('username', ['username' => $username]);
 })->where('username', '[A-Za-z]+');
