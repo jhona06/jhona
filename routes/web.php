@@ -14,3 +14,21 @@ Route::get('/content', function () {
 Route::get('/about', function () {
     return view('about');
 });
+Route::get('/', function () {
+    return view('welcome1', ['message' => 'Welcome to the homepage!']);
+})
+Route::redirect('/home', '/');
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/username/{username}', function ($username) {
+    return view('username', ['username' => $username]);
+});
+Route::get('/username/{username?}', function ($username = 'Guest') {
+    return view('username', ['username' => $username]);
+});
+Route::get('/user/{username?}', function ($username = 'Guest') {
+    return view('user', ['username' => $username]);
+})->where('username', '[A-Za-z]+');
