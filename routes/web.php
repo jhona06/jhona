@@ -23,12 +23,12 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/username/{username}', function ($username) {
-    return view('username', ['username' => $username]);
+Route::get('/user/{username}', function ($username) {
+    return view('user', ['username' => $username]);
 });
-Route::get('/username/{username?}', function ($username = 'Guest') {
-    return view('username', ['username' => $username]);
+Route::get('/user/{username?}', function ($username = 'Guest') {
+    return view('user', ['username' => $username]);
 });
-Route::get('/username/{username?}', function ($username = 'Guest') {
-    return view('username', ['username' => $username]);
+Route::get('/user/{username?}', function ($username = 'Guest') {
+    return view('user', ['username' => $username]);
 })->where('username', '[A-Za-z]+');
