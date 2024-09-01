@@ -8,13 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         #contact {
-            background-color: #ffffff;
+            background-color: #f5f5f5;
             padding: 80px 0;
         }
 
         #contact h2 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
+            margin-bottom: 40px; 
         }
 
         #contact .form-control {
