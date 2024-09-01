@@ -24,7 +24,7 @@
         }
 
         .contact-image {
-            max-width: 50%;
+            max-width: 70%;
             height: auto;
         }
     </style>
@@ -32,7 +32,7 @@
 <body>
     <section id="contact">
         <div class="container">
-            <h2 class="text-center">Contact Us</h2>
+            <h2 class="text-left">Contact Us</h2>
             <div class="row">
                 <div class="col-md-6">
                     <form action="{{ route('user.submit') }}" method="POST">
