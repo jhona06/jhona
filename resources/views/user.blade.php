@@ -27,7 +27,7 @@ body {
 }
 
 .welcome-message {
-    font-size: 1.25rem;
+    font-size: 50px;
     font-weight: 300;
     color: #000; 
     margin: 0;
