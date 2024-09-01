@@ -55,11 +55,11 @@
                             <input type="text" class="form-control" id="username" name="username">
                         </div>
                         <div class="mb-4">
-                            <label for="email" class="form-label">Phone</label>
+                            <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id=email name="email">
                         </div>
                         <div class="mb-4">
-                            <label for="phone" class="form-label">Email</label>
+                            <label for="phone" class="form-label">Phone</label>
                             <input type="phone" class="form-control" id=phone name="phone">
                         </div>
                         <div class="mb-4">
