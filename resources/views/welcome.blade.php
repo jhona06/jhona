@@ -48,7 +48,7 @@ body {
 <body>
 <div class="content">
         <div class="welcome-message">
-            Welcome, {{ $message }}!
+             {{ $message }}
         </div>
         <div class="welcome-image">
             <img src="{{ asset('images/whi.png') }}" alt="Welcome Image">
