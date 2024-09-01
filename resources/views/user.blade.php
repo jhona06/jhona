@@ -7,33 +7,35 @@
     <style>
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensure body takes full height */
+    min-height: 100vh; 
 }
 
 .content {
-    flex: 1; /* Allow the content area to grow and take available space */
+    flex: 1; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
+    justify-content: center; 
+    align-items: center; 
     text-align: center;
 }
 
 .welcome-message {
-    font-size: 2em;
-    color: #000; /* Black text color */
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #000; 
     margin: 0;
     padding: 20px;
 }
 
 .welcome-image {
-    margin-top: 20px; /* Space between message and image */
+    margin-top: 20px; 
 }
 
 .welcome-image img {
