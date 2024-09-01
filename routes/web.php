@@ -14,8 +14,8 @@ Route::get('/content', function () {
 Route::get('/about', function () {
     return view('about');
 });
-Route::get('/welcome1', function () {
-    return view('welcome1', ['message' => 'Welcome to the homepage!']);
+Route::get('/welcome', function () {
+    return view('welcome', ['message' => 'Welcome to the homepage!']);
 })
 Route::redirect('/home', '/welcome1');
 
