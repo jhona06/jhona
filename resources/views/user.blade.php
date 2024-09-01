@@ -15,7 +15,7 @@
             }
 
             .welcome-message {
-                margin-top: 500px;
+                margin-top: 200px;
                 font-size: 1.5em;
                 color: #333;
                 padding: 30px;
