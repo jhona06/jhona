@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 
 Route::get('/home', function () {
@@ -25,11 +26,12 @@ Route::get('/contact', function () {
 })->name ('contact');
 
 // Handle form submission and redirect based on username input
+
 Route::post('/contact/submit', function (Request $request) {
     $username = $request->input('username');
-    dd($username); // Debugging the input value
     return redirect()->route('user.optional', ['username' => $username]);
 })->name('user.submit');
+
 
 
 
