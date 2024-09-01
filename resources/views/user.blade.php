@@ -8,7 +8,6 @@
           /* Section Padding */
           .content-container {
             padding-top: 100px;
-            padding-bottom: 60px;
         }
 
         /* Home Section */
