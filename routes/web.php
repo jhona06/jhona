@@ -22,7 +22,7 @@ Route::redirect('/home','/');
 
 Route::get('/contact', function () {
     return view('contact');
-});->name ('contact');
+})->name ('contact');
 
 // Handle form submission and redirect based on username input
 Route::post('/contact/submit', function (Request $request) {
@@ -34,7 +34,7 @@ Route::post('/contact/submit', function (Request $request) {
 
 Route::get('/user/{username}', function ($username) {
     return view('user', ['username' => $username]);
-});>where('username', '[A-Za-z]+')->name('user.show');
+})->where('username', '[A-Za-z]+')->name('user.show');
 
 Route::get('/user/{username?}', function ($username = 'Guest') {
     return view('user', ['username' => $username]);
