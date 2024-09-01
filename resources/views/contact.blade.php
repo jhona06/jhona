@@ -26,7 +26,7 @@
             font-family: 'Playfair Display', serif;
         }
         #contact {
-            margin-top: 100px
+            margin-top: 100px;
             background-color: #f5f5f5;
             padding: 90px 0;
         }
