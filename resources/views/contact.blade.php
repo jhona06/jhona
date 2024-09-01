@@ -19,6 +19,7 @@
         }
 
         #contact .form-control {
+            margin-top: 10px;
             border-radius: 5px;
         }
 
@@ -28,7 +29,7 @@
         }
 
         .btn-primary {
-            background-color: #8DECB4; 
+            background-color: #41B06E; 
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
