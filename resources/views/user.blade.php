@@ -22,12 +22,12 @@
                 border-radius: 12px;
                 display: inline-block;
                 background-color: #ffffff;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             }
 
             h1 {
                 font-size: 2em;
                 color: #007bff;
+                
             }
 
             .container {
