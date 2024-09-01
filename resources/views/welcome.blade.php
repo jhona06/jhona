@@ -49,6 +49,7 @@
             justify-content: center; 
             align-items: center; 
             text-align: center;
+            margin-top: 20px;
         }
 
         .welcome-message {
