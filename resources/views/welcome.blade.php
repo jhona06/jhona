@@ -58,6 +58,7 @@
             color: #000; 
             margin: 0;
             padding: 20px;
+            margin-top: 20px;
         }
 
         .welcome-image {
@@ -66,6 +67,7 @@
         }
 
         .welcome-image img {
+            margin-top: 20px; 
             max-width: 100%;
             height: auto;
         }
