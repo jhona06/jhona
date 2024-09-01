@@ -50,6 +50,13 @@ body {
         <div class="welcome-message">
              {{ $message }}
         </div>
+        <li class="nav-item">
+                            <a class="nav-link" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about">About</a>
+                        </li>
+</li>
         <div class="welcome-image">
             <img src="{{ asset('images/whi.png') }}" alt="Welcome Image">
         </div>
