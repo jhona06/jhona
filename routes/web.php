@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome', ['message' => 'Welcome to the homepage!']);
 })->name('homepage');
 
-Route::get('/about', function() {
-    return view('about');
-})->name('about');
+Route::get('/about1', function() {
+    return view('about1');
+})->name('about1');
 
 Route::redirect('/home', "/");
 
@@ -27,7 +27,6 @@ Route::get('/contact', function () {
     return view("contact");
 })->name('contact');
 
-// Handle form submission and redirect based on username input
 Route::post('/contact/submit', function (Request $request) {
     $username = $request->input('username');
     return redirect()->route('user.optional', ['username' => $username]);
@@ -47,7 +46,7 @@ Route::middleware(['web'])->group(function () {
         return view('welcome', ['message' => 'Welcome to our Homepage!']);
     })->name('homepage');
     
-    Route::view('/about', 'about')->name('about');
+    Route::view('/about1', 'about1')->name('about1');
     
     Route::redirect('/home', '/');
 
@@ -58,10 +57,9 @@ Route::middleware(['web'])->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/{username?}', function ($username = 'Guest') {
             return view('user', ['username' => $username]);
-        })->where('username', '[A-Za-z]*')->name('user.optional');
+        })->where('username', '[A-Za-z]+')->name('user.optional');
     });
 });
-
 
 
 
