@@ -35,7 +35,8 @@ body {
 }
 
 .welcome-image {
-    margin-top: 100px; 
+    margin-top: 20px; 
+    margin-bottom: -20px;
     margin-right: 20px;
 }
 
