@@ -17,22 +17,11 @@ Route::get('/', function () {
     return view('welcome', ['message' => 'Welcome to the homepage!']);
 })->name('homepage');
 
-Route::view('/about', 'about')->name ('about');
-
-Route::redirect('/home','/');
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name ('contact');
-
 // Handle form submission and redirect based on username input
-
 Route::post('/contact/submit', function (Request $request) {
     $username = $request->input('username');
     return redirect()->route('user.optional', ['username' => $username]);
 })->name('user.submit');
-
-
 
 
 Route::get('/user/{username}', function ($username) {
@@ -50,7 +39,7 @@ Route::middleware(['web'])->group(function () {
     
     Route::view('/about', 'about')->name('about');
     
-    Route::redirect('/home', '/home');
+    Route::redirect('/home', '/welcome');
 
     Route::get('/contact', function () {
         return view('contact');
