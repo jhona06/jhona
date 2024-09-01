@@ -29,6 +29,6 @@
     <section id="user" class="py-5 bg-light">
         <section id="user">
             <div class="container">
-                <h1 class="display-3"> Welcome, {{ $username }}!</h1>
+                <h1 class="display-5"> Welcome, {{ $username }}!</h1>
 </body>
 </html>
