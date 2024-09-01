@@ -24,8 +24,9 @@
             text-transform: uppercase;
             margin-right: 50px;
             font-family: 'Playfair Display', serif;
-        }s
+        }
         #contact {
+            margin-top: 100px
             background-color: #f5f5f5;
             padding: 90px 0;
         }
