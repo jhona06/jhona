@@ -15,8 +15,6 @@
         #contact h2 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            
-            
         }
 
         #contact .form-control {
@@ -32,7 +30,7 @@
 <body>
     <section id="contact">
         <div class="container">
-            <h2 class="text-left">Contact Us</h2>
+            <h2 class="text-left" margin-bottom: 20px;>Contact Us</h2>
             <div class="row">
                 <div class="col-md-6">
                     <form action="{{ route('user.submit') }}" method="POST">
