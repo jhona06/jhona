@@ -31,8 +31,8 @@
 <body>
     <section id="contact">
         <div class="container">
-            <h2 class="text-center">Contact Us</h2>
             <div class="row">
+            <h2 class="text-center">Contact Us</h2>
                 <div class="col-md-6">
                     <form action="{{ route('user.submit') }}" method="POST">
                         @csrf
