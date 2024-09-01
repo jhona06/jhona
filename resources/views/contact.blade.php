@@ -24,8 +24,8 @@
         }
 
         .contact-image {
-            max-width: 200%;
-            margin-left: 50px;
+            max-width: 100%;
+            margin-left: 100px;
         }
     </style>
 </head>
