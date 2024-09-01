@@ -48,7 +48,7 @@ body {
             Welcome, {{ $username }}!
         </div>
         <div class="welcome-image">
-            <img src="{{ asset('images/your-image.jpg') }}" alt="Welcome Image">
+            <img src="{{ asset('images/hi.jpg') }}" alt="Welcome Image">
         </div>
     </div>
 </body>
