@@ -50,13 +50,17 @@ body {
         <div class="welcome-message">
              {{ $message }}
         </div>
-        <li class="nav-item">
-                            <a class="nav-link" href="#about">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact">Contact us</a>
-                        </li>
-</li>
+        
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('about') }}">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
+            </li>
+            
+        </ul>
+
         <div class="welcome-image">
             <img src="{{ asset('images/whi.png') }}" alt="Welcome Image">
         </div>
