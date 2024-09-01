@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
-     <!-- Bootstrap CSS -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-         #contact {
+        #contact {
             background-color: #ffffff;
             padding: 80px 0;
         }
@@ -23,12 +21,19 @@
         #contact .form-control {
             border-radius: 5px;
         }
-        </style>
+
+        .contact-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
     <section id="contact">
         <div class="container">
             <h2 class="text-center">Contact Us</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
                     <form action="{{ route('user.submit') }}" method="POST">
                         @csrf
                         <div class="mb-3">
@@ -36,21 +41,23 @@
                             <input type="text" class="form-control" id="username" name="username">
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email">
                         </div>
                         <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="4" ></textarea>
+                            <label for="message" class="form-label">Message:</label>
+                            <textarea class="form-control" id="message" rows="4" name="message"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('images/contact-image.jpg') }}" alt="Contact Image" class="contact-image">
+                </div>
             </div>
         </div>
-        </section>
-        <!-- Bootstrap JS -->
+    </section>
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-   
 </body>
 </html>
