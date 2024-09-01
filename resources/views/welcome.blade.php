@@ -58,7 +58,7 @@
             color: #000; 
             margin: 0;
             padding: 20px;
-            margin-top: 20px;
+            margin-top: 50px;
         }
 
         .welcome-image {
