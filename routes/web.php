@@ -47,7 +47,7 @@ Route::middleware(['web'])->group(function () {
     
     Route::view('/about', 'about')->name('about');
     
-    Route::redirect('/home', '/');
+    Route::redirect('/home', '/home');
     
     Route::get('/contact', function () {
         return view('contact');
