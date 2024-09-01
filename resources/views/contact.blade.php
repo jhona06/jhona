@@ -16,7 +16,7 @@
             font-family: 'Playfair Display', serif;
             font-weight: 700;
             margin-bottom: 40px;
-            margin: left;
+            
         }
 
         #contact .form-control {
