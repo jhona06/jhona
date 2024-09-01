@@ -62,7 +62,7 @@
         }
 
         .welcome-image {
-            margin-top: 20px; 
+            margin-top: 40px; 
             margin-right: 50px;
         }
 
