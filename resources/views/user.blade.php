@@ -6,40 +6,49 @@
     <title>Welcome</title>
     <style>
 
-            body {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                text-align: center;
-                background-color: #f5f5f5;
-                margin: 0;
-                padding: 0;
-            }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full height */
+}
 
-            .welcome-message {
-                margin-top: 250px;
-                font-size: 1.5em;
-                color: #333;
-                padding: 30px;
-                display: inline-block;
-                background-color: #ffffff;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
+.content {
+    flex: 1; /* Allow the content area to grow and take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center;
+}
 
-            h1 {
-                font-size: 2em;
-                color: #1E201E;
-            }
+.welcome-message {
+    font-size: 2em;
+    color: #000; /* Black text color */
+    margin: 0;
+    padding: 20px;
+}
 
-            .container {
-                max-width: 800px;
-                margin: auto;
-                padding: 0 20px;
-            }
+.welcome-image {
+    margin-top: 20px; /* Space between message and image */
+}
+
+.welcome-image img {
+    max-width: 100%;
+    height: auto;
+}
         </style>
 </head>
 <body>
-<div class="container">
+<div class="content">
         <div class="welcome-message">
-            <h1>Welcome, {{ $username }}!</h1>
+            Welcome, {{ $username }}!
+        </div>
+        <div class="welcome-image">
+            <img src="{{ asset('images/your-image.jpg') }}" alt="Welcome Image">
         </div>
     </div>
 </body>
