@@ -13,7 +13,6 @@
         /* Home Section */
         #user {
             background-color: #f8f9fa;
-            padding: 100px 0;
             text-align: center;
         }
 
