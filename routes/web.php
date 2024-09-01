@@ -62,16 +62,5 @@ Route::middleware(['web'])->group(function () {
     });
 });
 
-Route::post('/contact/submit', function (Illuminate\Http\Request $request) {
-    $validatedData = $request->validate([
-        'username' => 'required|alpha', // Ensures only alphabetic characters
-        'phone' => 'required|regex:/^[0-9]+$/', // Ensures phone contains only digits
-        'email' => 'required|email',
-        'message' => 'required',
-    ]);
-
-    // Logic to handle form submission here
-})->name('user.submit');
-
 
 
