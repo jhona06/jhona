@@ -9,7 +9,7 @@
     <style>
         #contact {
             background-color: #f5f5f5;
-           
+            padding: 80px 0;
         }
 
         #contact h2 {
