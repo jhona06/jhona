@@ -3,11 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Welcome</title>
+    <style>
+
+body {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+.content {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+}
+
+.welcome-message {
+    font-size: 50px;
+    font-weight: 300;
+    color: #000; 
+    margin: 0;
+    padding: 20px;
+}
+
+.welcome-image {
+    margin-top: 20px; 
+    margin-right: 50px;
+}
+
+.welcome-image img {
+    max-width: 100%;
+    height: auto;
+}
+        </style>
 </head>
 <body>
-    
-    <h1>{{ $message }}</h1>
-    
+<div class="content">
+        <div class="welcome-message">
+            Welcome, {{ $message }}!
+        </div>
+        <div class="welcome-image">
+            <img src="{{ asset('images/whi.png') }}" alt="Welcome Image">
+        </div>
+    </div>
 </body>
 </html>
+
