@@ -6,7 +6,22 @@
     <title>Contact Us</title>
 </head>
 <body>
-    
+    <style>
+         #contact {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+
+        #contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        #contact .form-control {
+            border-radius: 5px;
+        }
+        </style>
     <section id="contact">
         <div class="container">
             <h2 class="text-center">Contact Us</h2>
