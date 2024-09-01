@@ -20,13 +20,13 @@
                 color: #333;
                 padding: 30px;
                 display: inline-block;
-                background-color: #1E201E;
+                background-color: #ffffff;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             }
 
             h1 {
                 font-size: 2em;
-                color: #007bff;
+                color: #1E201E;
             }
 
             .container {
