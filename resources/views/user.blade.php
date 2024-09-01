@@ -7,7 +7,7 @@
     <style>
           /* Section Padding */
           .content-container {
-            padding-top: 100px;
+            padding-top: 200px;
         }
 
         /* Home Section */
