@@ -9,7 +9,7 @@
             body {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 text-align: center;
-                background-color: #1E201E;
+                background-color: #f5f5f5;
                 margin: 0;
                 padding: 0;
             }
@@ -20,7 +20,7 @@
                 color: #333;
                 padding: 30px;
                 display: inline-block;
-                background-color: #ffffff;
+                background-color: #1E201E;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             }
 
