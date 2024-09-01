@@ -59,6 +59,10 @@
                             <input type="email" class="form-control" id=email name="email">
                         </div>
                         <div class="mb-4">
+                            <label for="phone" class="form-label">Email</label>
+                            <input type="phone" class="form-control" id=phone name="phone">
+                        </div>
+                        <div class="mb-4">
                             <label for="message" class="form-label">Message</label>
                             <textarea class="form-control" id="message" rows="4" name="message"></textarea>
                         </div>
