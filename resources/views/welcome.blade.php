@@ -67,7 +67,6 @@
         }
 
         .welcome-image img {
-            margin-top: 20px; 
             max-width: 100%;
             height: auto;
         }
