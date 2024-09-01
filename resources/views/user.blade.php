@@ -12,13 +12,13 @@
         }
 
         /* Home Section */
-        #home {
+        #user {
             background-color: #f8f9fa;
             padding: 100px 0;
             text-align: center;
         }
 
-        #home h1 {
+        #user h1 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
             margin-bottom: 20px;
