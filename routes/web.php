@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+
 
 Route::get('/home', function () {
     return view('home');
@@ -48,7 +48,7 @@ Route::middleware(['web'])->group(function () {
     Route::view('/about', 'about')->name('about');
     
     Route::redirect('/home', '/home');
-    
+
     Route::get('/contact', function () {
         return view('contact');
     })->name('contact');
@@ -60,6 +60,8 @@ Route::middleware(['web'])->group(function () {
     });
 });
 
+
 return redirect()->route('home');
+
 
 
