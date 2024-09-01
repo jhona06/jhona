@@ -9,7 +9,7 @@
             body {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 text-align: center;
-                background-color: #f5f5f5;
+                background-color: #1E201E;
                 margin: 0;
                 padding: 0;
             }
