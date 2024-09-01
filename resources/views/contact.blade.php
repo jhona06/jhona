@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .navbar-container {
+         .navbar-container {
             position: fixed;
             top: 0;
             width: 100%;
@@ -16,7 +16,8 @@
 
         .navbar {
             background-color: #ECDFCC;
-
+            padding-top: 16px;
+            padding-bottom: 16px;
         }
 
         .navbar-brand {
@@ -24,6 +25,11 @@
             text-transform: uppercase;
             margin-right: 50px;
             font-family: 'Playfair Display', serif;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            text-transform: uppercase;
+            font-size: 14px;
         }
         #contact {
             background-color: #f5f5f5;
