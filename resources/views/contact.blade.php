@@ -9,7 +9,7 @@
     <style>
         #contact {
             background-color: #f5f5f5;
-            padding: 80px 0;
+            padding: 90px 0;
         }
 
         #contact h2 {
@@ -32,6 +32,7 @@
             background-color: #41B06E; 
             border: none;
             border-radius: 5px;
+            padding: 10px 20px;
             color: #ffffff; 
         }
 
