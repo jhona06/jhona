@@ -46,25 +46,36 @@ body {
         </style>
 </head>
 <body>
-<div class="content">
-        <div class="welcome-message">
-             {{ $message }}
-        </div>
-        
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('about') }}">About Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
-            </li>
-            
-        </ul>
+        <div class="navbar-container">
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container">
+                        <a class="navbar-brand" href="macandgab">Mac and Gab</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ route('about') }}">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="content">
+                    <div class="welcome-message">
+                        {{ $message }}
+                    </div>
 
-        <div class="welcome-image">
-            <img src="{{ asset('images/whi.png') }}" alt="Welcome Image">
-        </div>
-    </div>
+                    <div class="welcome-image">
+                        <img src="{{ asset('images/whi.png') }}" alt="Welcome Image">
+                    </div>
+                </div>
 </body>
 </html>
 
