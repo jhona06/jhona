@@ -27,9 +27,10 @@ Route::get('/contact', function () {
 // Handle form submission and redirect based on username input
 Route::post('/contact/submit', function (Request $request) {
     $username = $request->input('username');
-    // Redirect to the route that displays the user welcome message
+    dd($username); // Debugging the input value
     return redirect()->route('user.optional', ['username' => $username]);
 })->name('user.submit');
+
 
 
 Route::get('/user/{username}', function ($username) {
@@ -60,8 +61,6 @@ Route::middleware(['web'])->group(function () {
     });
 });
 
-
-return redirect()->route('home');
 
 
 
