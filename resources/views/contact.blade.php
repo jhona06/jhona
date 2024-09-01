@@ -16,8 +16,6 @@
 
         .navbar {
             background-color: #ECDFCC;
-            padding-top: 16px;
-            padding-bottom: 16px;
         }
 
         .navbar-brand {
@@ -30,6 +28,16 @@
         .navbar .navbar-nav .nav-link {
             text-transform: uppercase;
             font-size: 14px;
+        }
+        body {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
         }
         #contact {
             background-color: #f5f5f5;
