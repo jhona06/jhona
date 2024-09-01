@@ -26,6 +26,19 @@
             max-width: 100%;
             margin-left: 80px;
         }
+
+        .btn-primary {
+            background-color: #8DECB4; 
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            color: #ffffff; 
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; 
+            color: #ffffff; 
+        }
     </style>
 </head>
 <body>
