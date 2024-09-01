@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/home', function () {
     return view('home');
 });
@@ -14,14 +12,18 @@ Route::get('/content', function () {
 Route::get('/about', function () {
     return view('about');
 });
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome', ['message' => 'Welcome to the homepage!']);
-})
-Route::redirect('/home', '/welcome1');
+})->name('homepage');
+
+Route::view('/about', 'about')->name ('about');
+
+Route::redirect('/home','/');
 
 Route::get('/contact', function () {
     return view('contact');
-});
+});->name ('contact');
+
 
 Route::get('/user/{username}', function ($username) {
     return view('user', ['username' => $username]);
