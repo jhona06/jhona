@@ -56,10 +56,10 @@
                         </div>
                         <div class="mb-4">
                             <label for="email" class="form-label">Phone</label>
-                            <input type="email" class="form-control" id=phone name="email">
+                            <input type="email" class="form-control" id=email name="email">
                         </div>
                         <div class="mb-4">
-                            <label for="message" class="form-label">Message:</label>
+                            <label for="message" class="form-label">Message</label>
                             <textarea class="form-control" id="message" rows="4" name="message"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
