@@ -51,10 +51,10 @@ body {
              {{ $message }}
         </div>
         <li class="nav-item">
-                            <a class="nav-link" href="#about">Home</a>
+                            <a class="nav-link" href="#about">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact">About</a>
+                            <a class="nav-link" href="contact">Contact us</a>
                         </li>
 </li>
         <div class="welcome-image">
