@@ -27,7 +27,6 @@ Route::get('/contact', function () {
     return view("contact");
 })->name('contact');
 
-// Handle form submission and redirect based on username input
 Route::post('/contact/submit', function (Request $request) {
     $username = $request->input('username');
     return redirect()->route('user.optional', ['username' => $username]);
