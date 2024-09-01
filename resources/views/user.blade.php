@@ -22,6 +22,7 @@
             font-family: 'Playfair Display', serif;
             font-weight: 700;
             margin-bottom: 20px;
+            font-size: 50;
         }
         </style>
 </head>
