@@ -7,10 +7,10 @@
 </head>
 <body>
     <h1>Contact Us</h1>
-    <form action="#" method="POST">
+    <form action="{{ route('user.submit') }}" method="POST">
         @csrf
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
+        <label for="username">Name:</label>
+        <input type="text" id="username" name="username" required>
         
         <label for="email">Email:</label>
         <input type="email" id="email" name="email">
