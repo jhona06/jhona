@@ -5,47 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <style>
-          /* Section Padding */
-          .content-container {
-            padding-top: 200px;
-        }
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                text-align: center;
+                background-color: #f5f5f5;
+                margin: 0;
+                padding: 0;
+            }
 
-        /* Home Section */
-        #user {
-            background-color: #f8f9fa;
-            padding: 100px 0;
-            text-align: center;
-        }
+            .welcome-message {
+                margin-top: 100px;
+                font-size: 1.5em;
+                color: #333;
+                padding: 30px;
+                border: 1px solid #007bff;
+                border-radius: 12px;
+                display: inline-block;
+                background-color: #ffffff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
 
-        #user h1 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 50px;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f8ff;
-            margin: 0;
-            padding: 0;
-        }
-        .welcome-message {
-            margin-top: 50px;
-            font-size: 2em;
-            color: #333;
-            padding: 20px;
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-            display: inline-block;
-            background-color: #e8f5e9;
-        }
+            h1 {
+                font-size: 2em;
+                color: #007bff;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: auto;
+                padding: 0 20px;
+            }
         </style>
 </head>
 <body>
-    <section id="user" class="py-5 bg-light">
-        <section id="user">
-            <div class="container">
-            <div class="welcome-message">
-                <h1 class="display-5"> Welcome, {{ $username }}!</h1>
+        <div class="container">
+                <div class="welcome-message">
+                    <h1>Welcome, {{ $username }}!</h1>
+                </div>
+            </div>
 </body>
 </html>
