@@ -22,12 +22,30 @@
             font-weight: 700;
             font-size: 50px;
         }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        .welcome-message {
+            margin-top: 50px;
+            font-size: 2em;
+            color: #333;
+            padding: 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            display: inline-block;
+            background-color: #e8f5e9;
+        }
         </style>
 </head>
 <body>
     <section id="user" class="py-5 bg-light">
         <section id="user">
             <div class="container">
+            <div class="welcome-message">
                 <h1 class="display-5"> Welcome, {{ $username }}!</h1>
 </body>
 </html>
