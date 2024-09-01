@@ -15,7 +15,7 @@
         }
 
         .navbar {
-            background-color: #B4D6CD;
+            background-color: #ECDFCC;
 
         }
 
