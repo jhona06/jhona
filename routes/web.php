@@ -58,7 +58,7 @@ Route::middleware(['web'])->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/{username?}', function ($username = 'Guest') {
             return view('user', ['username' => $username]);
-        })->where('username', '[A-Za-z]*')->name('user.optional');
+        })->where('username', '[A-Za-z]+')->name('user.optional');
     });
 });
 
