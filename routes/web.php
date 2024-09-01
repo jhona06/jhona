@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome', ['message' => 'Welcome to the homepage!']);
 })->name('homepage');
 
-Route::get('/about', function() {
-    return view('about');
+Route::get('/about1', function() {
+    return view('about1');
 })->name('about1');
 
 Route::redirect('/home', "/");
@@ -46,7 +46,7 @@ Route::middleware(['web'])->group(function () {
         return view('welcome', ['message' => 'Welcome to our Homepage!']);
     })->name('homepage');
     
-    Route::view('/about', 'about')->name('about');
+    Route::view('/about1', 'about1')->name('about1');
     
     Route::redirect('/home', '/');
 
