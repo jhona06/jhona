@@ -70,6 +70,11 @@
             max-width: 100%;
             height: auto;
         }
+        #about h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-top: 40px;
+        }
         </style>
 </head>
 <body>
