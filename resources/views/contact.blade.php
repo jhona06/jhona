@@ -35,15 +35,15 @@
                 <div class="col-md-6">
                     <form action="{{ route('user.submit') }}" method="POST">
                         @csrf
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label for="username">Name:</label>
                             <input type="text" class="form-control" id="username" name="username">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label for="email" class="form-label">Email:</label>
                             <input type="email" class="form-control" id="email" name="email">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label for="message" class="form-label">Message:</label>
                             <textarea class="form-control" id="message" rows="4" name="message"></textarea>
                         </div>
