@@ -23,8 +23,9 @@ Route::get('/about', function() {
 
 Route::redirect('/home', "/");
 
-
-
+Route::get('/contact', function () {
+    return view("contact");
+})->name('contact');
 
 // Handle form submission and redirect based on username input
 Route::post('/contact/submit', function (Request $request) {
