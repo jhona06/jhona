@@ -9,13 +9,13 @@
     <style>
         #contact {
             background-color: #f5f5f5;
-            padding: 80px 0;
+           
         }
 
         #contact h2 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            margin-bottom: 40px; 
+            
         }
 
         #contact .form-control {
