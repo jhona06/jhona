@@ -52,7 +52,7 @@
                     </form>
                 </div>
                 <div class="col-md-6">
-                    <img src="{{ asset('images/contact-image.jpg') }}" alt="Contact Image" class="contact-image">
+                    <img src="{{ asset('images/cUs.jpg') }}" alt="Contact Image" class="contact-image">
                 </div>
             </div>
         </div>
