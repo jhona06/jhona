@@ -10,6 +10,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('item_id')->constrained(); 
             $table->foreignId('user_id')->nullable()->constrained();
             $table->foreignId('item_id')->constrained('menu_items')->onDelete('cascade'); // Assuming a relationship with 'menu_items' table
             $table->integer('quantity');

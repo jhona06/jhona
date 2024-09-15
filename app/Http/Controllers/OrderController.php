@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Order;
-use App\Models\MenuItem;
-use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -20,7 +18,7 @@ class OrderController extends Controller
 
         $item = MenuItem::find($request->item_id);
         $order = Session::get('order', []);
-
+        
         if (isset($order[$item->id])) {
             $order[$item->id]['quantity'] += $request->quantity;
         } else {
@@ -30,12 +28,12 @@ class OrderController extends Controller
                 'quantity' => $request->quantity,
             ];
         }
-
+        
         Session::put('order', $order);
         $orderTotal = array_sum(array_map(function ($item) {
             return $item['quantity'] * $item['price'];
         }, $order));
-
+        
         Session::put('order_total', $orderTotal);
 
         return redirect()->route('home');
@@ -44,27 +42,15 @@ class OrderController extends Controller
     public function submit(Request $request)
     {
         $order = Session::get('order', []);
-        $user = Auth::user(); // Get the authenticated user
-
         if (!$order) {
             return redirect()->route('home')->with('error', 'No items in the order.');
         }
 
-        // Process the order and save it to the database
+        // Save the order without user_id
         $orderModel = new Order();
-        $orderModel->user_id = $user ? $user->id : null; // Ensure a user is logged in or handle accordingly
         $orderModel->total = Session::get('order_total');
         $orderModel->status = 'pending';
         $orderModel->save();
-
-        // Optionally, save order items if you have a separate OrderItem model
-        foreach ($order as $item) {
-            $orderModel->items()->create([
-                'item_id' => $item['id'],
-                'quantity' => $item['quantity'],
-                'price' => $item['price'],
-            ]);
-        }
 
         // Clear the session
         Session::forget('order');

@@ -27,11 +27,6 @@ Route::post('/contact/submit', [ContactController::class, 'submit'])->name('cont
 
 Route::post('/order/submit', [OrderController::class, 'submit'])->name('order.submit');
 
-Route::middleware('auth')->group(function () {
-    Route::post('/order/add', [OrderController::class, 'add'])->name('order.add');
-    Route::post('/order/submit', [OrderController::class, 'submit'])->name('order.submit');
-});
-
 
 
 
