@@ -71,6 +71,8 @@
     <!-- Main content area -->
     <div class="content-container">
         @yield('content')
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        
     </div>
 
     <!-- Footer (optional) -->
