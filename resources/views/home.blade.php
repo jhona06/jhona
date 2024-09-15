@@ -29,15 +29,15 @@
                     </form>
                 </div>
                 @php
-                    // Define a mapping of category names to icon filenames
-                    $iconMapping = [
-                        'Silog meals' => 'silog.png',
-                        'Rice bowls' => 'Rice bowls.png',
-                        'Beverages' => 'beverages.png',
-                        'Pasta' => 'pasta.png',
-                        
-                    ];
-                @endphp
+                // Define a mapping of category names to icon filenames
+                $iconMapping = [
+                    'Silog meals' => 'silog.png',
+                    'Rice bowls' => 'Rice bowls.png',
+                    'Beverages' => 'beverages.png',
+                    'Pasta' => 'pasta.png',
+                    
+                ];
+            @endphp
 
                             <!-- Categories Tabs -->
                 <ul class="nav nav-tabs mb-3" id="categoryTabs" role="tablist">
@@ -54,44 +54,44 @@
                         </li>
                     @endforeach
                 </ul>
-                <div class="tab-content" id="categoryTabsContent">
-    @foreach($categories as $index => $category)
-        <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
-            <!-- Menu Items for the category -->
-            <div class="row">
-                @foreach($menuItems->where('category_id', $category->id) as $item)
-                    @php
-                        // Create an image mapping array for menu items
-                        $itemImageMapping = [
-                            'Tocilog' => 'Tocilog.png',
-                            'Adobo' => 'Adobo.png',  // Add more mappings as needed
-                            'Sinigang' => 'Sinigang.png',
-                            'Lechon' => 'Lechon.png',
-                            // Default image if not found
-                        ];
-                        // Retrieve the image file name based on the item name
-                        $itemImage = $itemImageMapping[$item->name] ?? 'default-item.jpg';
-                    @endphp
-                    <div class="col-md-3 mb-4">
-                        <div class="menu-item">
-                            <!-- Display the menu item image -->
-                            <img src="{{ asset('images/menu_items/' . $itemImage) }}" alt="{{ $item->name }}" class="menu-item-image" />
-                            <h4>{{ $item->name }}</h4>
-                            <p>${{ $item->price }}</p>
-                            <form action="{{ route('order.add') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="item_id" value="{{ $item->id }}" />
-                                <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" />
-                                <button type="submit" class="btn btn-success">Add to Order</button>
-                            </form>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @endforeach
-</div>
+                @php
+    $itemImageMapping = [
+        'Tocilog' => 'Tocilog.png',
+        'Liemposilog' => 'Liempo.png',
+        'Sinigang' => 'Sinigang.png',
+        'Lechon' => 'Lechon.png',
+        // Add more mappings as needed
+    ];
+@endphp
 
+
+
+                
+                <div class="tab-content" id="categoryTabsContent">
+                    @foreach($categories as $index => $category)
+                        <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
+                            <!-- Menu Items for the category -->
+                            <div class="row">
+                                @foreach($menuItems->where('category_id', $category->id) as $item)
+                                    <div class="col-md-3 mb-4">
+                                        <div class="menu-item">
+                                            <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}" class="menu-item-image" />
+                                            <h4>{{ $item->name }}</h4>
+                                            <p>${{ $item->price }}</p>
+                                            <form action="{{ route('order.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="item_id" value="{{ $item->id }}" />
+                                                <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" />
+                                                <button type="submit" class="btn btn-success">Add to Order</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
 
             <!-- Ordering Section -->
             <div class="col-md-3 d-none d-md-block">
