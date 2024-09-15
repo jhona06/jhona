@@ -16,9 +16,9 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
-                        <li class="list-group-item">Item 1: $10</li>
-                        <li class="list-group-item">Item 2: $15</li>
-                        <li class="list-group-item">Item 3: $20</li>
+                        @foreach ($menuItems as $item)
+                            <li class="list-group-item">{{ $item->name }}: ${{ $item->price }}</li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -38,9 +38,9 @@
                         <div class="form-group">
                             <label for="item">Select Item:</label>
                             <select id="item" name="item" class="form-control" required>
-                                <option value="item1">Item 1 - $10</option>
-                                <option value="item2">Item 2 - $15</option>
-                                <option value="item3">Item 3 - $20</option>
+                                @foreach ($menuItems as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }} - ${{ $item->price }}</option>
+                                @endforeach
                             </select>
                         </div>
 
