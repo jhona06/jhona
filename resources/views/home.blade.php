@@ -5,6 +5,20 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <!-- Messages Section -->
+            <div class="col-md-12">
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if(session('order_placed'))
+                    <div class="alert alert-success">
+                        Your order has been placed successfully!
+                    </div>
+                @endif
+            </div>
+
             <!-- Main Content Area -->
             <div class="col-md-9">
                 <!-- Search Bar -->
@@ -56,8 +70,8 @@
             <!-- Ordering Section -->
             <div class="col-md-3 d-none d-md-block">
                 <div class="ordering">
-                    <h4>Place Your Order</h4>
-                    @if(Session::has('order'))
+                    <h4>Your Order</h4>
+                    @if(Session::has('order') && count(Session::get('order')) > 0)
                         <ul class="list-group mb-3">
                             @foreach(Session::get('order') as $item)
                                 <li class="list-group-item">
@@ -66,25 +80,34 @@
                             @endforeach
                         </ul>
                         <p><strong>Total: ${{ Session::get('order_total') }}</strong></p>
-                        <form action="{{ route('order.submit') }}" method="POST">
+                        <!-- View Order Details Button -->
+                        <form action="{{ route('order.place') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-success">Place Order</button>
+                            <button type="submit" class="btn btn-info mt-3">
+                                Place Order
+                            </button>
                         </form>
-                        @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-
-@if(session('order_status'))
-    <div class="alert alert-success">
-        {{ session('order_status') }}
-    </div>
-@endif
-
                     @else
                         <p>Your order is empty.</p>
                     @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Order Confirmation -->
+    <div class="modal fade" id="orderPlacedModal" tabindex="-1" aria-labelledby="orderPlacedModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderPlacedModalLabel">Order Placed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Your order has been placed successfully! Thank you for ordering.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -99,42 +122,23 @@
         margin-right: 8px;
     }
 
-    .search-bar {
-        margin-bottom: 20px;
-    }
-
-    .nav-tabs .nav-link {
-        border-radius: 0;
-        padding: 10px;
-        font-size: 16px;
-    }
-
-    .nav-tabs .nav-link.active {
-        background-color: #f8f9fa;
-        border-color: #dee2e6 #dee2e6 #fff;
-    }
-
-    .menu-item {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: center;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
     .menu-item-image {
         width: 100%;
         height: 150px;
         object-fit: cover;
-        border-bottom: 1px solid #ddd;
         margin-bottom: 10px;
     }
-
-    .ordering {
-        border: 1px solid #ddd;
-        padding: 15px;
-        margin-top: 15px;
-    }
 </style>
+@endpush
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    @if(session('order_placed'))
+        // Automatically show the modal after placing the order
+        var myModal = new bootstrap.Modal(document.getElementById('orderPlacedModal'));
+        myModal.show();
+    @endif
+</script>
 @endpush
