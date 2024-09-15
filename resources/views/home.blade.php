@@ -1,37 +1,24 @@
-@extends('Components.Layout')
+@extends('layouts.app')
 
-@section('title', 'Home Page')
+@section('title', 'Menu')
 
 @section('content')
-    <section id="home">
+    <section id="menu" class="py-5">
         <div class="container">
-            <h1 class="display-3">Welcome to Mac and Gab Restaurant</h1>
-            <p class="lead">Experience the best dining with a variety of dishes prepared with the freshest ingredients. Our welcoming atmosphere and exceptional service make every visit memorable.</p>
-            <a href="#contact" class="btn btn-primary">Contact Us</a>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2 class="text-center">Get in Touch</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" required>
+            <h2 class="text-center">Menu</h2>
+            <div class="row">
+                @foreach($menuItems as $item)
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $item->name }}</h5>
+                                <p class="card-text">{{ $item->description }}</p>
+                                <p class="card-text"><strong>${{ number_format($item->price, 2) }}</strong></p>
+                                <a href="{{ route('menu.show', $item->id) }}" class="btn btn-primary">View Details</a>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
