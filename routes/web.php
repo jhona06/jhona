@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MenuController;
-
+// to display the menu
 Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
+// to show the details of a specific menu item
 Route::get('/menu/{id}', [MenuController::class, 'show'])->name('menu.show');
 Route::get('/about', function () {
     return view('about');
