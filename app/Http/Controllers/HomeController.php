@@ -2,17 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MenuItem;
 use Illuminate\Http\Request;
+use App\Models\MenuItem;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Fetch all menu items from the database
-        $menuItems = MenuItem::all();
+        $categories = Category::all();
+        $query = MenuItem::query();
 
-        // Pass the menu items to the view
-        return view('home', ['menuItems' => $menuItems]);
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        $menuItems = $query->get();
+
+        return view('home', compact('menuItems', 'categories'));
     }
 }
