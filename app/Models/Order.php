@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'total', 'status'];
+    use HasFactory;
+
+    protected $fillable = ['total', 'status']; // Ensure 'user_id' is not in the fillable array
 
     public function items()
     {

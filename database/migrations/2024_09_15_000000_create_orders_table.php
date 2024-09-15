@@ -4,24 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class ModifyUserIdInOrdersTable extends Migration
 {
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('item_id')->constrained(); 
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->foreignId('item_id')->constrained('menu_items')->onDelete('cascade'); // Assuming a relationship with 'menu_items' table
-            $table->integer('quantity');
-            $table->decimal('total', 10, 2); // Total price
-            $table->string('status')->default('pending'); // Order status
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->nullable()->change();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->nullable(false)->change();
+        });
     }
 }
+
