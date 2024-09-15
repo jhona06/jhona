@@ -2,6 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\MenuController;
+
+Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
+Route::get('/menu/{id}', [MenuController::class, 'show'])->name('menu.show');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
 
 Route::get('/home', function () {
