@@ -1,16 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;\use App\Http\Controllers\MenuController;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\OrderController;
 
-Route::get('/', [MenuController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
-Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
-Route::get('/menu/{id}', [MenuController::class, 'show'])->name('menu.show');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
-Route::post('/contact', [PageController::class, 'send'])->name('contact.send');
+Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
+Route::post('/order/place', [OrderController::class, 'place'])->name('order.place');
