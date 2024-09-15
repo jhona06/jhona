@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Models\MenuItem;
 use App\Models\Order;
 
 class OrderController extends Controller
@@ -46,11 +47,20 @@ class OrderController extends Controller
             return redirect()->route('home')->with('error', 'No items in the order.');
         }
 
-        // Save the order without user_id
+        // Save the order
         $orderModel = new Order();
         $orderModel->total = Session::get('order_total');
         $orderModel->status = 'pending';
         $orderModel->save();
+
+        // Optional: Save order items in a separate table
+        foreach ($order as $itemId => $item) {
+            $orderModel->items()->create([ // Assuming you have a relation setup
+                'menu_item_id' => $itemId,
+                'quantity' => $item['quantity'],
+                'price' => $item['price'],
+            ]);
+        }
 
         // Clear the session
         Session::forget('order');
