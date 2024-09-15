@@ -20,6 +20,22 @@ class CreateMenuItemsTable extends Migration
             $table->timestamps();
         });
     }
+    public function up()
+{
+    Schema::create('categories', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->timestamps();
+    });
+}
+public function up()
+{
+    Schema::table('menu_items', function (Blueprint $table) {
+        $table->foreignId('category_id')->constrained()->onDelete('cascade');
+    });
+}
+
+
 
     /**
      * Reverse the migrations.
