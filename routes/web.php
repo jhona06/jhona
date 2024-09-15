@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
 })->name('home');
 
