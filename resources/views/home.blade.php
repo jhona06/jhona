@@ -29,17 +29,19 @@
                     </form>
                 </div>
 
-                <!-- Categories Tabs -->
-                <ul class="nav nav-tabs mb-3" id="categoryTabs" role="tablist">
-                    @foreach($categories as $index => $category)
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link{{ $index === 0 ? ' active' : '' }}" id="tab-{{ $category->id }}" data-bs-toggle="tab" href="#category-{{ $category->id }}" role="tab" aria-controls="category-{{ $category->id }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
-                                <img src="{{ asset('icons/' . $category->icon) }}" alt="{{ $category->name }}" class="category-icon" />
-                                {{ $category->name }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
+               <!-- Categories Tabs -->
+<ul class="nav nav-tabs mb-3" id="categoryTabs" role="tablist">
+    @foreach($categories as $index => $category)
+        <li class="nav-item" role="presentation">
+            <a class="nav-link{{ $index === 0 ? ' active' : '' }}" id="tab-{{ $category->id }}" data-bs-toggle="tab" href="#category-{{ $category->id }}" role="tab" aria-controls="category-{{ $category->id }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
+                <!-- Display specific icon for "Silog Meals" category -->
+                <img src="{{ asset($category->name === 'Silog meals' ? 'icons/silog.png' : 'icons/' . $category->icon) }}" alt="{{ $category->name }}" class="category-icon" />
+                {{ $category->name }}
+            </a>
+        </li>
+    @endforeach
+</ul>
+
                 
                 <div class="tab-content" id="categoryTabsContent">
                     @foreach($categories as $index => $category)
@@ -117,9 +119,10 @@
 @push('styles')
 <style>
     .category-icon {
-        width: 24px;
-        height: 24px;
+        width: 10px;
+        height: 10px;
         margin-right: 8px;
+        object-fit: cover;
     }
 
     .menu-item-image {
