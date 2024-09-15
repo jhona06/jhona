@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\HomeController;
+
+
 
 Route::get('/home', function () {
     return view('home');
@@ -17,6 +20,7 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
