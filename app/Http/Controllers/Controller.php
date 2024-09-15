@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\MenuItem;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class HomeController extends Controller
 {
-   
     public function index()
     {
         // Fetch all menu items from the database
