@@ -7,7 +7,7 @@
         <h1 class="text-center">Welcome to Our Restaurant!</h1>
         <p class="text-center">Explore our menu and place your order.</p>
 
-        <!-- Search Bar -->
+        <!-- Search Bar and Categories Dropdown -->
         <div class="search-bar">
             <form action="{{ route('home') }}" method="GET">
                 <input type="text" name="search" placeholder="Search menu items..." value="{{ request('search') }}">
@@ -23,7 +23,7 @@
             </form>
         </div>
 
-        <!-- Menu Section -->
+        <!-- Menu Items Display -->
         <div class="menu-section">
             <h2>Our Menu</h2>
             <div class="menu-items">
