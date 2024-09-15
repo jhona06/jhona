@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
 use App\Models\MenuItem;
-use App\Models\Order; // Assuming you have an Order model
 
 class OrderController extends Controller
 {
     public function add(Request $request)
     {
+        // Validate request
         $request->validate([
             'item_id' => 'required|exists:menu_items,id',
             'quantity' => 'required|integer|min:1',
         ]);
 
         $item = MenuItem::find($request->item_id);
-        $order = Session::get('order', []);
-        
+        $order = session()->get('order', []);
+
         if (isset($order[$item->id])) {
             $order[$item->id]['quantity'] += $request->quantity;
         } else {
@@ -28,42 +29,45 @@ class OrderController extends Controller
                 'quantity' => $request->quantity,
             ];
         }
-        
-        Session::put('order', $order);
+
+        session()->put('order', $order);
         $orderTotal = array_sum(array_map(function ($item) {
             return $item['quantity'] * $item['price'];
         }, $order));
-        
-        Session::put('order_total', $orderTotal);
 
-        return redirect()->route('home')->with('success', 'Item added to your order!');
+        session()->put('order_total', $orderTotal);
+
+        return redirect()->route('home');
     }
 
     public function submit(Request $request)
     {
-        $order = Session::get('order', []);
-        if (empty($order)) {
+        // Get the order from the session
+        $orderData = session()->get('order', []);
+        if (!$orderData) {
             return redirect()->route('home')->with('error', 'No items in the order.');
         }
 
-        // Example: Save order to database
-        $orderModel = new Order();
-        $orderModel->user_id = auth()->id(); // Assuming user is logged in
-        $orderModel->total = Session::get('order_total');
-        $orderModel->save();
+        // Create an order record
+        $order = new Order();
+        $order->user_id = Auth::id(); // Assuming the user is authenticated
+        $order->total = session()->get('order_total');
+        $order->status = 'pending';
+        $order->save();
 
-        foreach ($order as $item) {
-            $orderModel->items()->create([
-                'name' => $item['name'],
-                'price' => $item['price'],
+        // Save each order item
+        foreach ($orderData as $itemId => $item) {
+            $order->items()->create([
+                'item_id' => $itemId,
                 'quantity' => $item['quantity'],
+                'total' => $item['quantity'] * $item['price'],
             ]);
         }
 
-        // Clear session data
-        Session::forget('order');
-        Session::forget('order_total');
+        // Clear the session
+        session()->forget('order');
+        session()->forget('order_total');
 
-        return redirect()->route('home')->with('success', 'Your order has been placed!');
+        return redirect()->route('home')->with('success', 'Your order is being made!');
     }
 }

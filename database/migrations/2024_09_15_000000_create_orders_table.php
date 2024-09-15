@@ -10,9 +10,11 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->constrained('menu_items'); // Adjust the table name if needed
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Assuming orders are linked to users
+            $table->foreignId('item_id')->constrained('menu_items')->onDelete('cascade'); // Assuming a relationship with 'menu_items' table
             $table->integer('quantity');
-            $table->string('status')->default('pending');
+            $table->decimal('total', 10, 2); // Total price
+            $table->string('status')->default('pending'); // Order status
             $table->timestamps();
         });
     }
