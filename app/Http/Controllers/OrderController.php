@@ -40,16 +40,16 @@ class OrderController extends Controller
     return redirect()->route('home');
 }
 
+
 public function submit(Request $request)
 {
     $order = Session::get('order', []);
-    if (!$order) {
+    if (empty($order)) {
         return redirect()->route('home')->with('error', 'No items in the order.');
     }
 
-    // Save the order with user_id as nullable
+    // Save the order without user_id
     $orderModel = new Order();
-    $orderModel->user_id = null; // Allow null for user_id
     $orderModel->total = Session::get('order_total');
     $orderModel->status = 'pending';
     $orderModel->save();
@@ -59,6 +59,6 @@ public function submit(Request $request)
     Session::forget('order_total');
 
     // Notify user
-    return redirect()->route('home')->with('success', 'Your order is being made!');
+    return redirect()->route('home')->with('order_status', 'Your order is being placed!');
 }
 }
