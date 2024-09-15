@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Models\Order;
 use App\Models\MenuItem;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -18,7 +19,7 @@ class OrderController extends Controller
         ]);
 
         $item = MenuItem::find($request->item_id);
-        $order = session()->get('order', []);
+        $order = Session::get('order', []);
 
         if (isset($order[$item->id])) {
             $order[$item->id]['quantity'] += $request->quantity;
@@ -30,44 +31,46 @@ class OrderController extends Controller
             ];
         }
 
-        session()->put('order', $order);
+        Session::put('order', $order);
         $orderTotal = array_sum(array_map(function ($item) {
             return $item['quantity'] * $item['price'];
         }, $order));
 
-        session()->put('order_total', $orderTotal);
+        Session::put('order_total', $orderTotal);
 
         return redirect()->route('home');
     }
 
     public function submit(Request $request)
     {
-        // Get the order from the session
-        $orderData = session()->get('order', []);
-        if (!$orderData) {
+        $order = Session::get('order', []);
+        $user = Auth::user(); // Get the authenticated user
+
+        if (!$order) {
             return redirect()->route('home')->with('error', 'No items in the order.');
         }
 
-        // Create an order record
-        $order = new Order();
-        $order->user_id = Auth::id(); // Assuming the user is authenticated
-        $order->total = session()->get('order_total');
-        $order->status = 'pending';
-        $order->save();
+        // Process the order and save it to the database
+        $orderModel = new Order();
+        $orderModel->user_id = $user ? $user->id : null; // Ensure a user is logged in or handle accordingly
+        $orderModel->total = Session::get('order_total');
+        $orderModel->status = 'pending';
+        $orderModel->save();
 
-        // Save each order item
-        foreach ($orderData as $itemId => $item) {
-            $order->items()->create([
-                'item_id' => $itemId,
+        // Optionally, save order items if you have a separate OrderItem model
+        foreach ($order as $item) {
+            $orderModel->items()->create([
+                'item_id' => $item['id'],
                 'quantity' => $item['quantity'],
-                'total' => $item['quantity'] * $item['price'],
+                'price' => $item['price'],
             ]);
         }
 
         // Clear the session
-        session()->forget('order');
-        session()->forget('order_total');
+        Session::forget('order');
+        Session::forget('order_total');
 
+        // Notify user
         return redirect()->route('home')->with('success', 'Your order is being made!');
     }
 }
