@@ -8,7 +8,7 @@
             <h2 class="text-left">Contact Us</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <form action="{{ route('contact.submit') }}" method="POST">
+                    <form action="{{ route('user.submit') }}" method="POST">
                         @csrf
                         <div class="mb-4">
                             <label for="username">Name</label>
