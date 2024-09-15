@@ -9,6 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    public function up()
+{
+    Schema::create('menu_items', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->text('description');
+        $table->decimal('price', 8, 2);
+        $table->timestamps();
+    });
+}
+
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
