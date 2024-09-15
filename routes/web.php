@@ -27,8 +27,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-
-
 // it will view the home 
 Route::get('/', function () {
     return view('welcome', ['message' => 'Welcome to the homepage!']);
