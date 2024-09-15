@@ -28,46 +28,70 @@
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                 </div>
+                @php
+                    // Define a mapping of category names to icon filenames
+                    $iconMapping = [
+                        'Silog meals' => 'silog.png',
+                        'Rice bowls' => 'Rice bowls.png',
+                        'Beverages' => 'beverages.png',
+                        'Pasta' => 'pasta.png',
+                        
+                    ];
+                @endphp
 
-               <!-- Categories Tabs -->
-<ul class="nav nav-tabs mb-3" id="categoryTabs" role="tablist">
-    @foreach($categories as $index => $category)
-        <li class="nav-item" role="presentation">
-            <a class="nav-link{{ $index === 0 ? ' active' : '' }}" id="tab-{{ $category->id }}" data-bs-toggle="tab" href="#category-{{ $category->id }}" role="tab" aria-controls="category-{{ $category->id }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
-                <!-- Display specific icon for "Silog Meals" category -->
-                <img src="{{ asset($category->name === 'Silog meals' ? 'icons/silog.png' : 'icons/' . $category->icon) }}" alt="{{ $category->name }}" class="category-icon" />
-                {{ $category->name }}
-            </a>
-        </li>
-    @endforeach
-</ul>
-
-                
-                <div class="tab-content" id="categoryTabsContent">
+                            <!-- Categories Tabs -->
+                <ul class="nav nav-tabs mb-3" id="categoryTabs" role="tablist">
                     @foreach($categories as $index => $category)
-                        <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
-                            <!-- Menu Items for the category -->
-                            <div class="row">
-                                @foreach($menuItems->where('category_id', $category->id) as $item)
-                                    <div class="col-md-3 mb-4">
-                                        <div class="menu-item">
-                                            <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}" class="menu-item-image" />
-                                            <h4>{{ $item->name }}</h4>
-                                            <p>${{ $item->price }}</p>
-                                            <form action="{{ route('order.add') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="item_id" value="{{ $item->id }}" />
-                                                <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" />
-                                                <button type="submit" class="btn btn-success">Add to Order</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link{{ $index === 0 ? ' active' : '' }}" id="tab-{{ $category->id }}" data-bs-toggle="tab" href="#category-{{ $category->id }}" role="tab" aria-controls="category-{{ $category->id }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
+                                <!-- Display icon for each category based on the mapping -->
+                                @php
+                                    $icon = $iconMapping[$category->name] ?? 'default.png'; // Use 'default.png' if no match is found
+                                @endphp
+                                <img src="{{ asset('icons/' . $icon) }}" alt="{{ $category->name }}" class="category-icon" />
+                                {{ $category->name }}
+                            </a>
+                        </li>
                     @endforeach
-                </div>
+                </ul>
+                <div class="tab-content" id="categoryTabsContent">
+    @foreach($categories as $index => $category)
+        <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
+            <!-- Menu Items for the category -->
+            <div class="row">
+                @foreach($menuItems->where('category_id', $category->id) as $item)
+                    @php
+                        // Create an image mapping array for menu items
+                        $itemImageMapping = [
+                            'Tocilog' => 'Tocilog.png',
+                            'Adobo' => 'Adobo.png',  // Add more mappings as needed
+                            'Sinigang' => 'Sinigang.png',
+                            'Lechon' => 'Lechon.png',
+                            // Default image if not found
+                        ];
+                        // Retrieve the image file name based on the item name
+                        $itemImage = $itemImageMapping[$item->name] ?? 'default-item.jpg';
+                    @endphp
+                    <div class="col-md-3 mb-4">
+                        <div class="menu-item">
+                            <!-- Display the menu item image -->
+                            <img src="{{ asset('images/menu_items/' . $itemImage) }}" alt="{{ $item->name }}" class="menu-item-image" />
+                            <h4>{{ $item->name }}</h4>
+                            <p>${{ $item->price }}</p>
+                            <form action="{{ route('order.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="item_id" value="{{ $item->id }}" />
+                                <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" />
+                                <button type="submit" class="btn btn-success">Add to Order</button>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
             </div>
+        </div>
+    @endforeach
+</div>
+
 
             <!-- Ordering Section -->
             <div class="col-md-3 d-none d-md-block">
@@ -123,6 +147,7 @@
         height: 10px;
         margin-right: 8px;
         object-fit: cover;
+        vertical-align: middle;
     }
 
     .menu-item-image {

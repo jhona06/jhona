@@ -19,4 +19,7 @@ class CreateCategoriesTable extends Migration
     {
         Schema::dropIfExists('categories');
     }
+    Schema::table('categories', function (Blueprint $table) {
+        $table->string('icon')->nullable(); // Ensure there's an 'icon' column
+    });
 }
