@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\MenuItem;
 use App\Models\Category;
+use App\Models\MenuItem;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -13,21 +13,16 @@ class HomeController extends Controller
         $categories = Category::all();
         $query = MenuItem::query();
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where('name', 'like', "%{$search}%");
+        if ($request->has('category_id')) {
+            $query->where('category_id', $request->input('category_id'));
         }
 
-          // Get menu items based on the selected category or all items if no category is selected
-          $category_id = $request->query('category_id');
-          $menuItems = $category_id 
-              ? MenuItem::where('category_id', $category_id)->get()
-              : MenuItem::all();
-  
-          return view('home', compact('categories', 'menuItems'));
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->input('search') . '%');
+        }
 
         $menuItems = $query->get();
 
-        return view('home', compact('menuItems', 'categories'));
+        return view('home', compact('categories', 'menuItems'));
     }
 }

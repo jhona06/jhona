@@ -10,8 +10,8 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Category name
-            $table->timestamps(); // Created at and updated at timestamps
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
