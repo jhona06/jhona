@@ -63,10 +63,6 @@
         // Add more mappings as needed
     ];
 @endphp
-
-
-
-                
                 <div class="tab-content" id="categoryTabsContent">
                     @foreach($categories as $index => $category)
                         <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
