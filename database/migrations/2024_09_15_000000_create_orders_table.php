@@ -10,7 +10,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Assuming orders are linked to users
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->foreignId('item_id')->constrained('menu_items')->onDelete('cascade'); // Assuming a relationship with 'menu_items' table
             $table->integer('quantity');
             $table->decimal('total', 10, 2); // Total price
