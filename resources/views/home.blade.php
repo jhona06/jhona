@@ -1,25 +1,24 @@
-@extends('layouts.app')
+@extends('Components.Layout')
 
-@section('title', 'Menu')
+@section('title', 'Home')
 
 @section('content')
-    <section id="menu" class="py-5">
-        <div class="container">
-            <h2 class="text-center">Menu</h2>
-            <div class="row">
-                @foreach($menuItems as $item)
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $item->name }}</h5>
-                                <p class="card-text">{{ $item->description }}</p>
-                                <p class="card-text"><strong>${{ number_format($item->price, 2) }}</strong></p>
-                                <a href="{{ route('menu.show', $item->id) }}" class="btn btn-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+    <h1>Welcome to Our Store!</h1>
+    <p>View our menu and place your order.</p>
+    <!-- Add your menu and ordering functionality here -->
+    <ul>
+        <li>Item 1: $10</li>
+        <li>Item 2: $15</li>
+        <li>Item 3: $20</li>
+    </ul>
+    <form action="{{ route('order.place') }}" method="POST">
+        @csrf
+        <label for="item">Select Item:</label>
+        <select id="item" name="item" required>
+            <option value="item1">Item 1</option>
+            <option value="item2">Item 2</option>
+            <option value="item3">Item 3</option>
+        </select>
+        <button type="submit">Order Now</button>
+    </form>
 @endsection
