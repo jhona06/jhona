@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ModifyUserIdInOrdersTable extends Migration
+class UpdateUserIdInOrdersTable extends Migration
 {
     public function up()
     {
@@ -20,4 +20,5 @@ class ModifyUserIdInOrdersTable extends Migration
         });
     }
 }
+
 

@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'total',
+        'status',
+    ];
 
-    protected $fillable = ['total', 'status']; // Ensure 'user_id' is not in the fillable array
-
-    public function items()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
+    // Optionally, you might want to add any relationships or additional logic
 }

@@ -70,6 +70,18 @@
                             @csrf
                             <button type="submit" class="btn btn-success">Place Order</button>
                         </form>
+                        @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
+@if(session('order_status'))
+    <div class="alert alert-success">
+        {{ session('order_status') }}
+    </div>
+@endif
+
                     @else
                         <p>Your order is empty.</p>
                     @endif

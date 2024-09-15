@@ -10,63 +10,55 @@ use App\Models\Order;
 class OrderController extends Controller
 {
     public function add(Request $request)
-    {
-        // Validate request
-        $request->validate([
-            'item_id' => 'required|exists:menu_items,id',
-            'quantity' => 'required|integer|min:1',
-        ]);
+{
+    // Validate request
+    $request->validate([
+        'item_id' => 'required|exists:menu_items,id',
+        'quantity' => 'required|integer|min:1',
+    ]);
 
-        $item = MenuItem::find($request->item_id);
-        $order = Session::get('order', []);
-        
-        if (isset($order[$item->id])) {
-            $order[$item->id]['quantity'] += $request->quantity;
-        } else {
-            $order[$item->id] = [
-                'name' => $item->name,
-                'price' => $item->price,
-                'quantity' => $request->quantity,
-            ];
-        }
-        
-        Session::put('order', $order);
-        $orderTotal = array_sum(array_map(function ($item) {
-            return $item['quantity'] * $item['price'];
-        }, $order));
-        
-        Session::put('order_total', $orderTotal);
+    $item = MenuItem::find($request->item_id);
+    $order = Session::get('order', []);
 
-        return redirect()->route('home');
+    if (isset($order[$item->id])) {
+        $order[$item->id]['quantity'] += $request->quantity;
+    } else {
+        $order[$item->id] = [
+            'name' => $item->name,
+            'price' => $item->price,
+            'quantity' => $request->quantity,
+        ];
     }
 
-    public function submit(Request $request)
-    {
-        $order = Session::get('order', []);
-        if (!$order) {
-            return redirect()->route('home')->with('error', 'No items in the order.');
-        }
+    Session::put('order', $order);
+    $orderTotal = array_sum(array_map(function ($item) {
+        return $item['quantity'] * $item['price'];
+    }, $order));
 
-        // Save the order
-        $orderModel = new Order();
-        $orderModel->total = Session::get('order_total');
-        $orderModel->status = 'pending';
-        $orderModel->save();
+    Session::put('order_total', $orderTotal);
 
-        // Optional: Save order items in a separate table
-        foreach ($order as $itemId => $item) {
-            $orderModel->items()->create([ // Assuming you have a relation setup
-                'menu_item_id' => $itemId,
-                'quantity' => $item['quantity'],
-                'price' => $item['price'],
-            ]);
-        }
+    return redirect()->route('home');
+}
 
-        // Clear the session
-        Session::forget('order');
-        Session::forget('order_total');
-
-        // Notify user
-        return redirect()->route('home')->with('success', 'Your order is being made!');
+public function submit(Request $request)
+{
+    $order = Session::get('order', []);
+    if (!$order) {
+        return redirect()->route('home')->with('error', 'No items in the order.');
     }
+
+    // Save the order with user_id as nullable
+    $orderModel = new Order();
+    $orderModel->user_id = null; // Allow null for user_id
+    $orderModel->total = Session::get('order_total');
+    $orderModel->status = 'pending';
+    $orderModel->save();
+
+    // Clear the session
+    Session::forget('order');
+    Session::forget('order_total');
+
+    // Notify user
+    return redirect()->route('home')->with('success', 'Your order is being made!');
+}
 }
