@@ -54,13 +54,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#home">Home</a>
+                            <a class="nav-link" href="home">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="content">Content</a>
+                            <a class="nav-link" href="contact">contact</a>
                         </li>
                     </ul>
                 </div>
