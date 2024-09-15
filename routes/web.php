@@ -24,7 +24,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
-Route::post('/order/place', [OrderController::class, 'place'])->name('order.place');
+Route::post('/order', [OrderController::class, 'submit'])->name('order.place');
 
 
 

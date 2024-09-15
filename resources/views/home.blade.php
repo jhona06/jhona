@@ -4,107 +4,125 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center">Welcome to Our Restaurant!</h1>
-        <p class="text-center">Explore our menu and place your order.</p>
-
-        <!-- Search Bar and Categories Dropdown -->
-        <div class="search-bar">
-            <form action="{{ route('home') }}" method="GET">
-                <input type="text" name="search" placeholder="Search menu items..." value="{{ request('search') }}">
-                <select name="category_id">
-                    <option value="">All Categories</option>
+        <div class="row">
+            <!-- Sidebar for Categories -->
+            <div class="col-md-3 sidebar">
+                <h4>Categories</h4>
+                <ul>
                     @foreach($categories as $category)
-                        <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                            {{ $category->name }}
-                        </option>
+                        <li>
+                            <a href="{{ route('home', ['category_id' => $category->id]) }}">
+                                {{ $category->name }}
+                            </a>
+                        </li>
                     @endforeach
-                </select>
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-        </div>
-
-        <!-- Menu Items Display -->
-        <div class="menu-section">
-            <h2>Our Menu</h2>
-            <div class="menu-items">
-                @forelse($menuItems as $item)
-                    <div class="menu-item">
-                        <h3>{{ $item->name }}</h3>
-                        <p>Price: ${{ number_format($item->price, 2) }}</p>
-                    </div>
-                @empty
-                    <p>No menu items found.</p>
-                @endforelse
+                </ul>
             </div>
-        </div>
 
-        <!-- Order Form -->
-        <div class="order-form">
-            <h2>Place Your Order</h2>
-            <form action="{{ route('order.place') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="item">Select Item:</label>
-                    <select id="item" name="item" required>
-                        @foreach($menuItems as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }} - ${{ number_format($item->price, 2) }}</option>
-                        @endforeach
-                    </select>
+            <!-- Main Content Area -->
+            <div class="col-md-6 main-content">
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <form action="{{ route('home') }}" method="GET">
+                        <input type="text" name="search" placeholder="Search menu items..." value="{{ request('search') }}">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-primary">Order Now</button>
-            </form>
+
+                <!-- Menu Items Display -->
+                <h2>Our Menu</h2>
+                <div class="menu-items">
+                    @forelse($menuItems as $item)
+                        <div class="menu-item">
+                            <h3>{{ $item->name }}</h3>
+                            <p>Price: ${{ number_format($item->price, 2) }}</p>
+                        </div>
+                    @empty
+                        <p>No menu items found.</p>
+                    @endforelse
+                </div>
+            </div>
+
+            <!-- Ordering Form -->
+            <div class="col-md-3 order-form">
+                <h4>Place Your Order</h4>
+                <form action="{{ route('order.place') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="item">Select Item:</label>
+                        <select id="item" name="item" required>
+                            @foreach($menuItems as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }} - ${{ number_format($item->price, 2) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Order Now</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- Styles -->
     <style>
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        .text-center {
-            text-align: center;
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-right: 1px solid #ddd;
+        }
+        .sidebar h4 {
+            margin-top: 0;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+        .main-content {
+            padding: 15px;
         }
         .search-bar {
             margin-bottom: 20px;
-            text-align: center;
+            text-align: right;
         }
         .search-bar input,
-        .search-bar select {
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
         .search-bar button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-        }
-        .search-bar button:hover {
-            background-color: #0056b3;
-        }
-        .menu-section {
-            margin-bottom: 30px;
+            padding: 10px;
+            margin-left: 10px;
         }
         .menu-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+            margin-top: 20px;
         }
         .menu-item {
-            flex: 1 1 calc(33% - 30px);
             border: 1px solid #ddd;
             padding: 15px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
         }
         .order-form {
-            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+        .order-form h4 {
+            margin-top: 0;
         }
         .form-group {
             margin-bottom: 15px;
