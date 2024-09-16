@@ -15,11 +15,10 @@ class CreateCategoriesTable extends Migration
         });
     }
 
+    * @return void
+     
     public function down()
     {
         Schema::dropIfExists('categories');
     }
-    Schema::table('categories', function (Blueprint $table) {
-        $table->string('icon')->nullable(); // Ensure there's an 'icon' column
-    });
 }

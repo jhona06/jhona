@@ -46,4 +46,22 @@ return new class extends Migration
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }
+    public function up()
+    {
+        Schema::table('sessions', function (Blueprint $table) {
+            $table->integer('user_id')->nullable()->after('id');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('sessions', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
+    }
 };

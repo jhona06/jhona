@@ -67,7 +67,7 @@
                     @foreach($categories as $index => $category)
                         <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
                             <!-- Menu Items for the category -->
-                            <div class="row">
+                               <div class="row">
                                 @foreach($menuItems->where('category_id', $category->id) as $item)
                                     <div class="col-md-3 mb-4">
                                         <div class="menu-item">
