@@ -29,9 +29,7 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
-                <div class="col-md-6">
-                    <img src="{{ asset('images/l_cs.png') }}" alt="Contact Image" class="contact-image">
-                </div>
+    
             </div>
         </div>
     </section>

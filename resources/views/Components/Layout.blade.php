@@ -4,63 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Your custom styles here */
+        /* Custom styles here */
+        .sidebar {
+            background: #f8f9fa;
+            padding: 15px;
+            border-right: 1px solid #dee2e6;
+        }
+        .menu-item {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
         .navbar-container {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 9999;
-        }
-
-        .navbar {
-            background-color: #B4D6CD;
-            padding-top: 16px;
-            padding-bottom: 16px;
-        }
-
-        .navbar-brand {
-            font-size: 28px;
-            text-transform: uppercase;
-            margin-right: 50px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .content-container {
-            padding-top: 100px;
-            padding-bottom: 60px;
-        }
-
-        /* Section padding */
-        section {
-            padding: 50px 0;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-
     <!-- Navbar -->
     <div class="navbar-container">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="macandgab">Mac and Gab</a>
+                <a class="navbar-brand" href="{{ url('/') }}">Mac and Gab</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="home">Home</a>
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about">About</a>
+                            <a class="nav-link" href="{{ route('about') }}">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="content">Content</a>
+                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -68,19 +51,28 @@
         </nav>
     </div>
 
-    <!-- Main content area -->
-    <div class="content-container">
-        @yield('content')
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-        
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            @yield('content')
+        </div>
     </div>
+    @push('scripts')
+<script>
+    $(document).ready(function() {
+        @if(session('order_status'))
+            $('#orderModal').modal('show');
+        @endif
+    });
+</script>
+@endpush
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Footer (optional) -->
-    <footer class="text-center py-4">
-        <p>&copy; 2024 Mac and Gab Restaurant. All Rights Reserved.</p>
-    </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
