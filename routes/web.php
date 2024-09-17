@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
@@ -22,9 +21,11 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 // Route for adding items to the order
 Route::post('/order/add', [OrderController::class, 'add'])->name('order.add');
 
+//Route for submitting the order list
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
