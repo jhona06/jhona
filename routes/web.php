@@ -7,7 +7,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
 
 
-
 Route::get('/home', function () {
     return view('home');
 })->name('home');
