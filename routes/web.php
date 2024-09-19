@@ -6,11 +6,6 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
 
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\HomeController;
-
-
 
 Route::get('/home', function () {
     return view('home');
@@ -25,38 +20,22 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-<<<<<<< HEAD
 // Route for adding items to the order
 Route::post('/order/add', [OrderController::class, 'add'])->name('order.add');
 
-=======
-
-// Route for adding items to the order
-Route::post('/order/add', [OrderController::class, 'add'])->name('order.add');
-
-//Route for submitting the order list
->>>>>>> b6b0a52d0d922780083a03166b299f9d786c8a5b
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
 
-<<<<<<< HEAD
 Route::post('/order/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
 
 
 
-=======
-Route::post('/order/remove', [OrderController::class, 'removeOrder'])->name('order.remove');
->>>>>>> b6b0a52d0d922780083a03166b299f9d786c8a5b
 
 
 
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b6b0a52d0d922780083a03166b299f9d786c8a5b
 
 
 
