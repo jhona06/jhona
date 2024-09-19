@@ -29,7 +29,9 @@ Route::post('/contact/submit', [ContactController::class, 'submit'])->name('cont
 
 Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
 
-Route::post('/order/remove', [OrderController::class, 'removeOrder'])->name('order.remove');
+Route::post('/order/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
+
+
 
 
 
