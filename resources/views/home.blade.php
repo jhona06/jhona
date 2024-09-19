@@ -61,27 +61,29 @@
             </ul>
 
             <!-- Tab Content -->
-            <div class="tab-content" id="categoryTabsContent">
-                @foreach($categories as $index => $category)
-                    <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
-                        <!-- Menu Items for the category -->
-                        <div class="row">
-                            @foreach($menuItems->where('category_id', $category->id) as $item)
-                                <div class="col-md-3 mb-4">
-                                    <div class="menu-item" style="border-radius: 8px; overflow: hidden; border: 1px solid #ddd; padding: 20px;">
-                                        <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}" class="menu-item-image" style="border-radius: 8px;" />
-                                        <h5>{{ $item->name }}</h5>
-                                        <p>${{ $item->price }}</p>
-                                        <form action="{{ route('order.add') }}" method="POST">
-                                            @csrf
-                                            
-                                            <input type="hidden" name="item_id" value="{{ $item->id }}" />
-                                            <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" style="width: 100%;" />
-                                            <button type="submit" class="btn btn-success" style="width: 100%;">Add to Order</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            @endforeach
+<div class="tab-content" id="categoryTabsContent">
+    @foreach($categories as $index => $category)
+        <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
+            <!-- Menu Items for the category -->
+            <div class="row">
+                @foreach($menuItems->where('category_id', $category->id) as $item)
+                    <div class="col-md-3 mb-4">
+                        <div class="menu-item" style="border-radius: 8px; overflow: hidden; border: 1px solid #ddd; padding: 20px;">
+                            <!-- Display the image using its path stored in the database -->
+                            <img src="{{ asset('icons/' . $item->image) }}" alt="{{ $item->name }}" class="menu-item-image" style="border-radius: 8px; width: 100%; height: 150px; object-fit: cover;" />
+                            <h5>{{ $item->name }}</h5>
+                            <p>${{ $item->price }}</p>
+                            <form action="{{ route('order.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="item_id" value="{{ $item->id }}" />
+                                <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" style="width: 100%;" />
+                                <button type="submit" class="btn btn-success" style="width: 100%;">Add to Order</button>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
                         </div>
                     </div>
                 @endforeach
