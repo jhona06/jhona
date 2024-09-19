@@ -44,7 +44,7 @@ class OrderController extends Controller
     {
         // Get the current order
         $order = Session::get('order', []);
-        
+
         if (empty($order)) {
             return redirect()->route('home')->with('error', 'No items in the order.');
         }
@@ -60,54 +60,22 @@ class OrderController extends Controller
         $request->session()->forget('order_total');
 
         // Notify user
-        return redirect()->route('home')->with('order_placed', true);
+        return redirect()->route('home')->with('order_placed', 'Your order has been placed.');
     }
 
-    public function removeOrder(Request $request)
-    {
-        if ($request->has('remove_order')) {
-            // Clear the order from the session
-            session()->forget('order');
-            session()->forget('order_total');
-            
-            return response()->json(['success' => true]);
-        }
-
-        return response()->json(['success' => false], 400);
-    }
-    // OrderController.php
-
-// OrderController.php
-
-public function cancel(Request $request)
+    public function cancel(Request $request)
 {
-    $itemsToCancel = $request->input('items_to_cancel', []);
-    
+    // Check if there is an order in the session
     if (Session::has('order')) {
-        $order = Session::get('order');
+        // Clear the entire order from the session
+        $request->session()->forget('order');
+        $request->session()->forget('order_total');
 
-        foreach ($itemsToCancel as $itemIndex) {
-            // Remove the selected item from the order
-            unset($order[$itemIndex]);
-        }
-
-        // Update the session with the modified order
-        Session::put('order', $order);
-
-        // Recalculate the total
-        $orderTotal = array_reduce($order, function ($carry, $item) {
-            return $carry + ($item['quantity'] * $item['price']);
-        }, 0);
-
-        Session::put('order_total', $orderTotal);
-
-        // Optionally, you might want to set a cancellation message
-        return redirect()->route('home')->with('order_canceled', 'Selected items have been canceled.');
+        // Notify the user that the order has been canceled
+        return redirect()->route('home')->with('order_canceled', 'You have no orders.');
     }
 
     // If no order was found
     return redirect()->route('home')->with('error', 'No items to cancel.');
 }
-
-
 }

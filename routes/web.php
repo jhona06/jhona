@@ -19,6 +19,7 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 // Route for adding items to the order
 Route::post('/order/add', [OrderController::class, 'add'])->name('order.add');

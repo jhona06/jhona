@@ -3,6 +3,13 @@
 @section('title', 'Home')
 
 @section('content')
+<div class="hero-section">
+    <div class="container">
+        <h1>Welcome to Mac and Gab</h1>
+        <p>We are happy to fulfill your cravings</p>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
         <!-- Messages Section -->
@@ -14,7 +21,7 @@
             @endif
             @if(session('order_placed'))
                 <div class="alert alert-success">
-                    Your order has been placed successfully!
+                    {{ session('order_placed') }}
                 </div>
             @endif
             @if(session('order_canceled'))
@@ -61,60 +68,52 @@
             </ul>
 
             <!-- Tab Content -->
-<div class="tab-content" id="categoryTabsContent">
-    @foreach($categories as $index => $category)
-        <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
-            <!-- Menu Items for the category -->
-            <div class="row">
-                @foreach($menuItems->where('category_id', $category->id) as $item)
-                    <div class="col-md-3 mb-4">
-                        <div class="menu-item" style="border-radius: 8px; overflow: hidden; border: 1px solid #ddd; padding: 20px;">
-                            <!-- Display the image using its path stored in the database -->
-                            <img src="{{ asset('icons/' . $item->image) }}" alt="{{ $item->name }}" class="menu-item-image" style="border-radius: 8px; width: 100%; height: 150px; object-fit: cover;" />
-                            <h5>{{ $item->name }}</h5>
-                            <p>${{ $item->price }}</p>
-                            <form action="{{ route('order.add') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="item_id" value="{{ $item->id }}" />
-                                <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" style="width: 100%;" />
-                                <button type="submit" class="btn btn-success" style="width: 100%;">Add to Order</button>
-                            </form>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
+            <div class="tab-content" id="categoryTabsContent">
+                @foreach($categories as $index => $category)
+                    <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
+                        <!-- Menu Items for the category -->
+                        <div class="row">
+                            @foreach($menuItems->where('category_id', $category->id) as $item)
+                                <div class="col-md-3 mb-4">
+                                    <div class="menu-item" style="border-radius: 8px; overflow: hidden; border: 1px solid #ddd; padding: 20px;">
+                                        <img src="{{ asset('images/food.png') }}" alt="food" class="menu-item-image" style="border-radius: 8px;" />
+                                        <h5>{{ $item->name }}</h5>
+                                        <p>{{ number_format($item->price, 2) }}</p>
+                                        <form action="{{ route('order.add') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="item_id" value="{{ $item->id }}" />
+                                            <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" style="width: 100%;" />
+                                            <button type="submit" class="btn btn-success" style="width: 100%;">Add to Order</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
+
         <!-- Ordering Section -->
-<div class="col-md-3 d-none d-md-block">
-    <div class="ordering text-center" style="height: 720px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 20px; display: flex; flex-direction: column;">
-        <h4>Your Order</h4>
-        @if(Session::has('order') && count(Session::get('order')) > 0)
-            <!-- List of Items -->
-            <form action="{{ route('order.cancel') }}" method="POST">
-                @csrf
+        <div class="col-md-3 d-none d-md-block">
+            <div class="ordering text-center" style="height: 720px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 20px; display: flex; flex-direction: column;">
+                <h4>Your Order</h4>
+                @if(Session::has('order') && count(Session::get('order')) > 0)
+                <!-- List of Items -->
                 <div style="flex: 1; overflow-y: auto; padding-left: 10px; padding-right: 10px;">
-                    <ul class="list-group mb-4" style="margin: 0; list-style: none; padding: 0;">
-                        @foreach(Session::get('order') as $key => $item)
-                            <li class="list-group-item d-flex justify-content-between align-items-center" style="margin-left: 0; margin-right: 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                                <div>
-                                    <input type="checkbox" name="items_to_cancel[]" value="{{ $key }}" /> {{ $item['name'] }}
-                                </div>
-                                <div class="text-end">
-                                    <span>{{ $item['quantity'] }} x ${{ $item['price'] }}</span><br />
-                                    <strong>${{ $item['quantity'] * $item['price'] }}</strong>
-                                </div>
-                            </li>
+                    <ul class="list-group mb-4" style="margin: 0;">
+                        @foreach(Session::get('order') as $item)
+                        <li class="list-group-item" style="margin-left: 0; margin-right: 0;">
+                            {{ $item['name'] }} - {{ $item['quantity'] }} x {{ number_format($item['price'], 2) }} = {{ number_format($item['quantity'] * $item['price'], 2) }}
+                        </li>
                         @endforeach
                     </ul>
                 </div>
                 <!-- Total and Buttons -->
                 <div style="margin-top: auto; padding: 10px;">
-                    <p><strong>Total: ${{ Session::get('order_total') }}</strong></p>
+                    <p><strong>Total: {{ number_format(Session::get('order_total'), 2) }}</strong></p>
+
+                    <!-- Button Container -->
                     <div class="d-flex justify-content-between">
                         <!-- Place Order Button -->
                         <form action="{{ route('order.place') }}" method="POST" style="flex: 1; margin-right: 5px;">
@@ -123,20 +122,21 @@
                                 Place Order
                             </button>
                         </form>
-                        <!-- Cancel Selected Items Button -->
-                        <button type="submit" class="btn btn-secondary" style="flex: 1; margin-left: 5px;">
-                            Cancel
-                        </button>
+                        <!-- Cancel Order Button -->
+                        <form action="{{ route('order.cancel') }}" method="POST" style="flex: 1; margin-left: 5px;">
+                            @csrf
+                            <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                                Cancel
+                            </button>
+                        </form>
                     </div>
                 </div>
-            </form>
-        @else
-            <p>Your order is empty.</p>
-        @endif
-    </div>
-</div>
+                @else
+                <p>Your order is empty.</p>
+                @endif
+            </div>
+        </div>
 
-       
     </div>
 </div>
 
@@ -157,6 +157,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 @push('styles')
@@ -171,22 +172,31 @@
 
     .menu-item-image {
         width: 100%;
-        height: 150px;
+        height: 200px; /* Adjust height as needed */
         object-fit: cover;
-        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    .ordering {
+        border: 1px solid #ddd;
+    }
+
+    .ordering .btn {
+        width: 100%;
     }
 </style>
 @endpush
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
-    @if(session('order_placed'))
-    document.addEventListener("DOMContentLoaded", function() {
-        var myModal = new bootstrap.Modal(document.getElementById('orderPlacedModal'));
-        myModal.show();
+    document.addEventListener('DOMContentLoaded', function () {
+        // If the order_placed session variable is set, show the success alert
+        @if(session('order_placed'))
+            var alert = document.createElement('div');
+            alert.className = 'alert alert-success';
+            alert.innerText = "{{ session('order_placed') }}";
+            document.querySelector('.container').prepend(alert);
+        @endif
     });
-    @endif
 </script>
 @endpush
