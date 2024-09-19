@@ -69,11 +69,12 @@
                             @foreach($menuItems->where('category_id', $category->id) as $item)
                                 <div class="col-md-3 mb-4">
                                     <div class="menu-item" style="border-radius: 8px; overflow: hidden; border: 1px solid #ddd; padding: 20px;">
-                                        <img src="{{ asset('menu_items/' . $item->image) }}" alt="{{ $item->name }}" class="menu-item-image" style="border-radius: 8px;" />
+                                        <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}" class="menu-item-image" style="border-radius: 8px;" />
                                         <h5>{{ $item->name }}</h5>
                                         <p>${{ $item->price }}</p>
                                         <form action="{{ route('order.add') }}" method="POST">
                                             @csrf
+                                            
                                             <input type="hidden" name="item_id" value="{{ $item->id }}" />
                                             <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" style="width: 100%;" />
                                             <button type="submit" class="btn btn-success" style="width: 100%;">Add to Order</button>
