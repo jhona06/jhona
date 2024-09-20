@@ -68,7 +68,7 @@
             </ul>
 
             <!-- Tab Content -->
-            <div class="tab-content" id="categoryTabsContent">
+            <div class="tab-content" id="categoryTabsContent" style="height: 600px; overflow-y: auto; overflow-x: hidden;">
                 @foreach($categories as $index => $category)
                     <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
                         <!-- Menu Items for the category -->
