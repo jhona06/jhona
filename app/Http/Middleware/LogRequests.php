@@ -13,17 +13,12 @@ class LogRequests
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        $logData = sprintf(
-            "[%s] %s %s",
-            now()->toDateTimeString();
-            $request->method();
-            $request->fullUrl();
-        );
+        // Log the request details
+        $logData = sprintf("[%s] %s %s", now(), $request->method(), $request->fullUrl());
+        file_put_contents(storage_path('logs/log.txt'), $logData.PHP_EOL, FILE_APPEND);
 
-        Log::channel('daily')-> info($logData);
-        
         return $next($request);
     }
 }

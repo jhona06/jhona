@@ -13,11 +13,13 @@ class CheckAge
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, $age = 18)
     {
-        if ($request->inpurt('age')< 18) {
-            return redirect('access-denied');
+        // Check if the age parameter is provided
+        if ($request->has('age') && $request->input('age') < $age) {
+            return redirect('/access-denied');
         }
+
         return $next($request);
     }
 }
