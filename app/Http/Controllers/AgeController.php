@@ -16,7 +16,7 @@ class AgeController extends Controller
     {
         // Validate the age input
         $request->validate([
-            'age' => 'required|integer|min:0',
+            'check.age' => 'required|integer|min:0',
         ]);
 
         // Store the age in session
