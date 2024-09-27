@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MenuItem; // Import the model
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
