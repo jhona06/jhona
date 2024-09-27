@@ -7,16 +7,21 @@ use Illuminate\Http\Request;
 
 class CheckAge
 {
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  int  $age
+     * @return mixed
+     */
     public function handle(Request $request, Closure $next, $age = 18)
     {
-        // Get the age from session or request
-        $userAge = $request->input('age');
-        
-        // Check if the user is under the specified age
-        if ($userAge < $age) {
-            return redirect('/access-denied'); // Redirect to access denied page
+        // Assuming age is provided as a query parameter (modify according to how you get the user's age)
+        if ($request->input('age') < $age) {
+            return redirect('access-denied');
         }
 
-        return $next($request); // Continue to next middleware if age is valid
+        return $next($request);
     }
 }

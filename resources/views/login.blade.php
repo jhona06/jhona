@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Do you want to order?</h1>
-    <form action="/login" method="POST">
+    <form action="{{ route('login') }}" method="POST">
         @csrf
         <label for="age">Please enter your age:</label>
         <input type="number" id="age" name="age" required>

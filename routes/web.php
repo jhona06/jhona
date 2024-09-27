@@ -6,16 +6,20 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AgeController;
 
-// Default route to show the login form
-Route::get('/', [AgeController::class, 'showForm']); // Home page now shows the login form
-Route::post('/login', [AgeController::class, 'checkAge'])->middleware('check.age:18');
-Route::get('/access-denied', function () {
-    return view('access-denied');
-});
+Route::view('/', 'login')->name('login.view');
 
-// Route with a different age requirement
-Route::get('/order-restricted', [AgeController::class, 'showForm'])
-    ->middleware('check.age:21');
+// Route for handling login with CheckAge middleware (age 18)
+Route::middleware('check.age:18')->post('/login', function () {
+    return redirect()->route('home');
+})->name('login');
+
+// Route for age 21 restriction (optional)
+Route::middleware('check.age:21')->post('/login/21', function () {
+    return redirect()->route('home');
+})->name('login.21');
+
+// Access Denied route
+Route::view('/access-denied', 'access-denied')->name('access-denied');
 
 // Route for the home page
 Route::get('/home', function () {
