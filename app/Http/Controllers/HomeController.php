@@ -12,9 +12,14 @@ class HomeController extends Controller
     {
         // Fetch categories from the database
         $categories = Category::all();
+        $menuItems = MenuItem::all(); // Fetch all menu items
 
         // Pass categories to the view
-        return view('home', compact('categories'));
+        // Pass both categories and menuItems to the view
+        return view('home', [
+            'categories' => $categories,
+            'menuItems' => $menuItems,
+        ]);
     }
     
 }
