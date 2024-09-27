@@ -4,13 +4,11 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class CheckAge
 {
     public function handle(Request $request, Closure $next, $age = 18)
     {
-        // Check if the session has the age
         if ($request->session()->has('age')) {
             $userAge = $request->session()->get('age');
             if ($userAge < $age) {
