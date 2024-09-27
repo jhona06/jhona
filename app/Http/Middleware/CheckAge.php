@@ -8,17 +8,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckAge
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next, $age = 18)
     {
-        if ($request->input('age') < $age) {
-            return redirect('/access-denied');
+        // Check if the session has the age
+        if ($request->session()->has('age')) {
+            $userAge = $request->session()->get('age');
+            if ($userAge < $age) {
+                return redirect('/access-denied'); // Redirect if age is less than required
+            }
         }
-
-        return $next($request);
+        return $next($request); // Continue to the next request if age is valid
     }
 }
