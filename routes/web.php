@@ -43,25 +43,18 @@ Route::get('/login', function () {
 Route::middleware(['check.age'])->group(function () {
     Route::get('/home', function () {
         return view('home');
-    });
+    })->name('home');
 
     Route::get('/about', function () {
         return view('about');
-    });
+    })->name('about');
 
     Route::get('/contact', function () {
         return view('contact');
-    });
+    })->name('contact');
 });
 
-// Routes that require age check
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('check.age'); // Apply CheckAge middleware
 
 Route::post('/login', function (Request $request) {
     // Validate age input
@@ -77,5 +70,9 @@ Route::get('/restricted', function () {
     return 'Restricted Page';
 })->middleware('check.age:21'); // Require age of 21 or older
 
+Route::get('/', function (Request $request) {
+    // This will only return the welcome view if the CheckAge middleware passes
+    return view('welcome'); // The welcome view is now your home page
+})->name('home')->middleware('checkAge'); // Apply CheckAge middleware to the home route
 
 
