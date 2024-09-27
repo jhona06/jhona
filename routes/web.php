@@ -31,7 +31,22 @@ Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order
 Route::post('/order/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
 
 
+// Route to display the login form
+Route::get('/login', function () {
+    return view('login');
+});
 
+// Route group with CheckAge middleware
+Route::middleware(['check.age'])->group(function () {
+    Route::get('/home', function () {
+        return view('home'); // Load the home page if age check passes
+    });
+});
+
+// Route for access denied
+Route::get('/access-denied', function () {
+    return 'Access Denied: You must be 18 or older to access this page.';
+});
 
 
 
