@@ -25,4 +25,12 @@ class HomeController extends Controller
 
         return view('home', compact('categories', 'menuItems'));
     }
+    public function index()
+    {
+        // Retrieve categories from the database
+        $categories = Category::all(); // Or however you're retrieving categories
+
+        // Pass the categories variable to the view
+        return view('home', compact('categories')); // Using compact to pass variables
+    }
 }
