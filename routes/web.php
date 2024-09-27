@@ -42,3 +42,4 @@ Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order
 // Route for canceling an order
 Route::post('/order/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
