@@ -5,19 +5,21 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Illuminate\Support\Facades\File; // Import the File facade
 class LogRequests
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next)
     {
-        // Log the request details
-        $logData = sprintf("[%s] %s %s", now(), $request->method(), $request->fullUrl());
-        file_put_contents(storage_path('logs/log.txt'), $logData.PHP_EOL, FILE_APPEND);
+        // Define the log details
+        $logDetails = sprintf(
+            "[%s] %s %s\n", // Format: [timestamp] METHOD URL
+            now()->toDateTimeString(),
+            $request->method(),
+            $request->fullUrl()
+        );
+
+        // Append the log details to log.txt
+        File::append(storage_path('logs/log.txt'), $logDetails);
 
         return $next($request);
     }

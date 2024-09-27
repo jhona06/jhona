@@ -15,8 +15,7 @@ class CheckAge
      */
     public function handle(Request $request, Closure $next, $age = 18)
     {
-        // Check if the age parameter is provided
-        if ($request->has('age') && $request->input('age') < $age) {
+        if ($request->input('age') < $age) {
             return redirect('/access-denied');
         }
 
