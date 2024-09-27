@@ -4,11 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AgeController;
 
-// Route to display the login form
-Route::get('/login', function () {
-    return view('login'); // Make sure to create a login.blade.php view
-})->name('login');
+Route::get('/order', [AgeController::class, 'showForm']);
+Route::post('/order', [AgeController::class, 'checkAge'])->middleware('check.age:18');
+Route::get('/access-denied', function () {
+    return view('access-denied');
+});
+
+// Route with a different age requirement
+Route::get('/order-restricted', [AgeController::class, 'showForm'])
+    ->middleware('check.age:21');
 
 // Route for the home page
 Route::get('/home', function () {
@@ -41,5 +47,3 @@ Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order
 
 // Route for canceling an order
 Route::post('/order/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
