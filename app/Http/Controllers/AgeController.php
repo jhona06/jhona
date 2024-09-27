@@ -9,17 +9,20 @@ class AgeController extends Controller
 {
     public function showForm()
     {
-        return view('order'); // Create this view to display the age input form
+        return view('login'); // Return the login view (which is the form)
     }
 
     public function checkAge(Request $request)
     {
+        // Validate the age input
         $request->validate([
             'age' => 'required|integer|min:0',
         ]);
 
+        // Store the age in session
         Session::put('age', $request->age);
 
-        return redirect('/order'); // Redirect to the order page or another route as needed
+        // Redirect to the home page after successful age verification
+        return redirect('/home'); // Assuming you have a home route
     }
 }

@@ -6,8 +6,9 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AgeController;
 
-Route::get('/order', [AgeController::class, 'showForm']);
-Route::post('/order', [AgeController::class, 'checkAge'])->middleware('check.age:18');
+// Default route to show the login form
+Route::get('/', [AgeController::class, 'showForm']); // Home page now shows the login form
+Route::post('/login', [AgeController::class, 'checkAge'])->middleware('check.age:18');
 Route::get('/access-denied', function () {
     return view('access-denied');
 });
@@ -31,10 +32,6 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-// Root route redirecting to login
-Route::get('/', function () {
-    return redirect()->route('login'); // Redirect to login page
-});
 
 // Route for adding items to the order
 Route::post('/order/add', [OrderController::class, 'add'])->name('order.add');
