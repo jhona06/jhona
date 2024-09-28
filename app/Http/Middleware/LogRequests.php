@@ -17,8 +17,13 @@ class LogRequests
      */
     public function handle(Request $request, Closure $next)
     {
-        $log = "[" . now() . "] " . $request->method() . " " . $request->fullUrl() . "\n";
-        file_put_contents(storage_path('logs/log.txt'), $log, FILE_APPEND);
+        $logData = [
+            'url' => $request->fullUrl(),
+            'method' => $request->method(),
+            'timestamp' => now()->toDateTimeString()
+        ];
+
+        Log::channel('custom')->info('Request Details:', $logData);
 
         return $next($request);
     }

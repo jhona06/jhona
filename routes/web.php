@@ -1,50 +1,46 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AgeController;
 
-Route::view('/', 'login')->name('login.view');
-
-// Route for handling login with CheckAge middleware (age 18)
-Route::middleware('check.age:18')->post('/login', function () {
-    return redirect()->route('home');
-})->name('login');
-
-// Route for age 21 restriction (optional)
-Route::middleware('check.age:21')->post('/login/21', function () {
-    return redirect()->route('home');
-})->name('login.21');
-
-// Access Denied route
-Route::view('/access-denied', 'access-denied')->name('access-denied');
-
-// Route for the home page
+// Route for home page with age restriction using CheckAge middleware
 Route::get('/home', function () {
     return view('home');
-})->name('home');
+})->middleware('checkAge:18')->name('home');
 
-// Route for about page
+// About and Contact routes
 Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-// Route for contact page
 Route::get('/contact', function () {
     return view('contact');
-})->name('contact');
+})->middleware('checkAge:18')->name('contact');
 
+// HomeController for index
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Route for adding items to the order
 Route::post('/order/add', [OrderController::class, 'add'])->name('order.add');
 
-// Route for submitting the contact form
+// Contact submission
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
-// Route for placing an order
+// Place an order
 Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
 
-// Route for canceling an order
+// Cancel an order
 Route::post('/order/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
+
+// A restricted route that requires users to be 21 or older
+Route::get('/restricted', function () {
+    return "This page is restricted to 21+ users!";
+})->middleware('checkAge:21')->name('restricted');
+
+// Access Denied page
+Route::get('/access-denied', function () {
+    return "Access Denied!";
+})->name('access.denied');

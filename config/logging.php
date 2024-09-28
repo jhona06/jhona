@@ -49,6 +49,15 @@ return [
     |                    "errorlog", "monolog", "custom", "stack"
     |
     */
+    channels' => [
+        // other channels...
+    
+        'custom' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/log.txt'),
+            'level' => 'info',
+        ],
+    ],
 
     'channels' => [
 
