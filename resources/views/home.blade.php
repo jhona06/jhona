@@ -9,6 +9,23 @@
         <p>We are happy to fulfill your cravings</p>
     </div>
 </div>
+<!-- Check if there is an error (for underage users) -->
+@if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    <!-- Age Check Form -->
+    <form action="{{ route('home') }}" method="GET">
+        <div class="mb-3">
+            <label for="age" class="form-label">Enter your age:</label>
+            <input type="number" name="age" id="age" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+@endsection
 
 <div class="container">
     <div class="row">

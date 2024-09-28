@@ -49,7 +49,7 @@ return [
     |                    "errorlog", "monolog", "custom", "stack"
     |
     */
-    channels' => [
+    'channels' => [
         // other channels...
     
         'custom' => [
