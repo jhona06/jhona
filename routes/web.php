@@ -16,10 +16,12 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-// HomeController for index
-// Home route using HomeController with age restriction
-Route::get('/', [HomeController::class, 'index'])->middleware('checkAge:18')->name('home');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
+// HomeController for index
+Route::get('/', [HomeController::class, 'index'])->name('home');
 // Route for adding items to the order
 Route::post('/order/add', [OrderController::class, 'add'])->name('order.add');
 
