@@ -9,48 +9,32 @@
         <p>We are happy to fulfill your cravings</p>
     </div>
 </div>
-<!-- Check if there is an error (for underage users) -->
+
+<!-- Messages Section -->
 @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
+@if(session('order_placed'))
+    <div class="alert alert-success">{{ session('order_placed') }}</div>
+@endif
+@if(session('order_canceled'))
+    <div class="alert alert-info">{{ session('order_canceled') }}</div>
+@endif
 
-    <!-- Age Check Form -->
-    <form action="{{ route('home') }}" method="GET">
-        <div class="mb-3">
-            <label for="age" class="form-label">Enter your age:</label>
-            <input type="number" name="age" id="age" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
-@endsection
+<!-- Age Check Form -->
+<form action="{{ route('home') }}" method="GET">
+    <div class="mb-3">
+        <label for="age" class="form-label">Enter your age:</label>
+        <input type="number" name="age" id="age" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
+<!-- Categories and Menu Items -->
 <div class="container">
     <div class="row">
-        <!-- Messages Section -->
-        <div class="col-md-12">
-            @if(session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
-            @if(session('order_placed'))
-                <div class="alert alert-success">
-                    {{ session('order_placed') }}
-                </div>
-            @endif
-            @if(session('order_canceled'))
-                <div class="alert alert-info">
-                    {{ session('order_canceled') }}
-                </div>
-            @endif
-        </div>
-
-        <!-- Main Content Area -->
+        <!-- Categories Section -->
         <div class="col-md-9">
-            <!-- Search Bar -->
             <div class="search-bar mb-3">
                 <form action="{{ route('home') }}" method="GET" class="d-flex align-items-center">
                     <input type="text" name="search" placeholder="Search menu items..." class="form-control me-2" />
@@ -59,7 +43,6 @@
             </div>
 
             @php
-                // Define a mapping of category names to icon filenames
                 $iconMapping = [
                     'Silog meals' => 'silog.png',
                     'Rice bowls' => 'Rice bowls.png',
@@ -68,15 +51,11 @@
                 ];
             @endphp
 
-            <!-- Categories Tabs -->
             <ul class="nav nav-tabs mb-3" id="categoryTabs" role="tablist">
                 @foreach($categories as $index => $category)
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link{{ $index === 0 ? ' active' : '' }}" id="tab-{{ $category->id }}" data-bs-toggle="tab" href="#category-{{ $category->id }}" role="tab" aria-controls="category-{{ $category->id }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
-                            <!-- Display icon for each category based on the mapping -->
-                            @php
-                                $icon = $iconMapping[$category->name] ?? 'default.png'; // Use 'default.png' if no match is found
-                            @endphp
+                        <a class="nav-link{{ $index === 0 ? ' active' : '' }}" id="tab-{{ $category->id }}" data-bs-toggle="tab" href="#category-{{ $category->id }}" role="tab">
+                            @php $icon = $iconMapping[$category->name] ?? 'default.png'; @endphp
                             <img src="{{ asset('icons/' . $icon) }}" alt="{{ $category->name }}" class="category-icon" />
                             {{ $category->name }}
                         </a>
@@ -84,23 +63,21 @@
                 @endforeach
             </ul>
 
-            <!-- Tab Content -->
-            <div class="tab-content" id="categoryTabsContent" style="height: 600px; overflow-y: auto; overflow-x: hidden;">
+            <div class="tab-content" id="categoryTabsContent">
                 @foreach($categories as $index => $category)
-                    <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel" aria-labelledby="tab-{{ $category->id }}">
-                        <!-- Menu Items for the category -->
+                    <div class="tab-pane fade{{ $index === 0 ? ' show active' : '' }}" id="category-{{ $category->id }}" role="tabpanel">
                         <div class="row">
                             @foreach($menuItems->where('category_id', $category->id) as $item)
                                 <div class="col-md-3 mb-4">
-                                    <div class="menu-item" style="border-radius: 8px; overflow: hidden; border: 1px solid #ddd; padding: 20px;">
-                                        <img src="{{ asset('images/food.png') }}" alt="food" class="menu-item-image" style="border-radius: 8px;" />
+                                    <div class="menu-item">
+                                        <img src="{{ asset('images/food.png') }}" alt="food" class="menu-item-image" />
                                         <h5>{{ $item->name }}</h5>
                                         <p>{{ number_format($item->price, 2) }}</p>
                                         <form action="{{ route('order.add') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="item_id" value="{{ $item->id }}" />
-                                            <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" style="width: 100%;" />
-                                            <button type="submit" class="btn btn-success" style="width: 100%;">Add to Order</button>
+                                            <input type="number" name="quantity" min="1" value="1" class="form-control mb-2" />
+                                            <button type="submit" class="btn btn-success">Add to Order</button>
                                         </form>
                                     </div>
                                 </div>
@@ -113,57 +90,42 @@
 
         <!-- Ordering Section -->
         <div class="col-md-3 d-none d-md-block">
-            <div class="ordering text-center" style="height: 720px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 20px; display: flex; flex-direction: column;">
+            <div class="ordering text-center">
                 <h4>Your Order</h4>
                 @if(Session::has('order') && count(Session::get('order')) > 0)
-                <!-- List of Items -->
-                <div style="flex: 1; overflow-y: auto; padding-left: 10px; padding-right: 10px;">
-                    <ul class="list-group mb-4" style="margin: 0;">
+                    <ul class="list-group mb-4">
                         @foreach(Session::get('order') as $item)
-                        <li class="list-group-item" style="margin-left: 0; margin-right: 0;">
-                            {{ $item['name'] }} - {{ $item['quantity'] }} x {{ number_format($item['price'], 2) }} = {{ number_format($item['quantity'] * $item['price'], 2) }}
-                        </li>
+                            <li class="list-group-item">
+                                {{ $item['name'] }} - {{ $item['quantity'] }} x {{ number_format($item['price'], 2) }} = {{ number_format($item['quantity'] * $item['price'], 2) }}
+                            </li>
                         @endforeach
                     </ul>
-                </div>
-                <!-- Total and Buttons -->
-                <div style="margin-top: auto; padding: 10px;">
                     <p><strong>Total: {{ number_format(Session::get('order_total'), 2) }}</strong></p>
-
-                    <!-- Button Container -->
                     <div class="d-flex justify-content-between">
-                        <!-- Place Order Button -->
-                        <form action="{{ route('order.place') }}" method="POST" style="flex: 1; margin-right: 5px;">
+                        <form action="{{ route('order.place') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-success" style="width: 100%;">
-                                Place Order
-                            </button>
+                            <button type="submit" class="btn btn-success">Place Order</button>
                         </form>
-                        <!-- Cancel Order Button -->
-                        <form action="{{ route('order.cancel') }}" method="POST" style="flex: 1; margin-left: 5px;">
+                        <form action="{{ route('order.cancel') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-secondary" style="width: 100%;">
-                                Cancel
-                            </button>
+                            <button type="submit" class="btn btn-secondary">Cancel</button>
                         </form>
                     </div>
-                </div>
                 @else
-                <p>Your order is empty.</p>
+                    <p>Your order is empty.</p>
                 @endif
             </div>
         </div>
-
     </div>
 </div>
 
 <!-- Modal for Order Confirmation -->
-<div class="modal fade" id="orderPlacedModal" tabindex="-1" aria-labelledby="orderPlacedModalLabel" aria-hidden="true">
+<div class="modal fade" id="orderPlacedModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="orderPlacedModalLabel">Order Placed</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Order Placed</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <p>Your order has been placed successfully! Thank you for ordering.</p>
@@ -174,32 +136,19 @@
         </div>
     </div>
 </div>
-
 @endsection
 
 @push('styles')
 <style>
     .category-icon {
-        width: 24px; /* Adjust width and height as needed */
+        width: 24px;
         height: 24px;
         margin-right: 8px;
-        object-fit: cover;
-        vertical-align: middle;
     }
-
     .menu-item-image {
         width: 100%;
-        height: 200px; /* Adjust height as needed */
+        height: 200px;
         object-fit: cover;
-        border-radius: 8px;
-    }
-
-    .ordering {
-        border: 1px solid #ddd;
-    }
-
-    .ordering .btn {
-        width: 100%;
     }
 </style>
 @endpush
@@ -207,7 +156,6 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // If the order_placed session variable is set, show the success alert
         @if(session('order_placed'))
             var alert = document.createElement('div');
             alert.className = 'alert alert-success';

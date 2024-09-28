@@ -21,7 +21,6 @@ Route::get('/contact', function () {
 })->middleware('checkAge:18')->name('contact');
 
 // HomeController for index
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('check.age');
 
 // Route for adding items to the order
 Route::post('/order/add', [OrderController::class, 'add'])->name('order.add');
