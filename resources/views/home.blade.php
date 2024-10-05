@@ -7,7 +7,6 @@
     <div class="container">
         <h1>Welcome to Mac and Gab</h1>
         <p>We are happy to fulfill your cravings</p>
-        <a href="{{ route('ageverification') }}" class="btn btn-primary btn-lg">Verify Age to Order</a>
     </div>  
 </div>
 

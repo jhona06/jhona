@@ -45,10 +45,10 @@
 <body>
     <div>
         <h1>Access Denied</h1>
-        <p>You must verify your age first</p>
-        <p>You must be at least 18 years old above to order.</p>
+        <p>You must verify your age first </p>
+        <p> You must be at least 18 years old above to order.</p>
         <a href="{{ route('ageverification') }}">
-            <button>Verify Age Again</button>
+            <button>Verify Age</button>
         </a>
     </div>
 </body>
