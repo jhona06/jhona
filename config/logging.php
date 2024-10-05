@@ -51,12 +51,6 @@ return [
     */
     'channels' => [
         // other channels...
-    
-        'custom' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/log.txt'),
-            'level' => 'info',
-        ],
     ],
 
     'channels' => [
@@ -80,6 +74,11 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => env('LOG_DAILY_DAYS', 14),
             'replace_placeholders' => true,
+        ],
+        'custom' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/log.txt'),
+            'level' => 'info',
         ],
 
         'slack' => [
